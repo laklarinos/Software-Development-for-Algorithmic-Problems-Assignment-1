@@ -14,7 +14,8 @@ int main(int argc,char *argv[])
     char *outputFile = argv[10];
     int numOfNN = atoi(argv[12]);
     int rad = atoi(argv[14]);
-    int numOfItems = 0;
+    int numOfLines = 0;
+    int numOfElements = 0;
     char chr;
 
     FILE *inputFilePtr;
@@ -39,7 +40,7 @@ int main(int argc,char *argv[])
         exit(1);
     }
 
-    //open the files
+    // open the files
     inputFilePtr = fopen(inputFile,"r");
     if( inputFilePtr == 0){
         perror("Problem when opening : ");
@@ -55,8 +56,9 @@ int main(int argc,char *argv[])
         perror("Problem when opening : ");
     }
     
-    while ((read = getline(&line, &len, inputFilePtr)) != -1) {
-        numOfItems++;
+    while ((read = getline(&line, &len, inputFilePtr)) != -1) 
+    {
+        numOfLines++;
         // printf("Retrieved line of length %zu:\n", read);
         // printf(" = %s", line);
         pch = strtok (line," ");
@@ -65,13 +67,14 @@ int main(int argc,char *argv[])
             if(*pch != '\r')
             {
                 printf ("%s\n",pch);
-                numOf
+                numOfElements++;
             } 
             pch = strtok (NULL, " ");
+
+            printf(" element = %d\n",numOfElements);
         }
     }
-    printf("num of items: %d\n",numOfItems);
-
+    //printf("num of Items: %d\n",numOfLines);
 
     fclose(inputFilePtr);
     fclose(queryFilePtr);
