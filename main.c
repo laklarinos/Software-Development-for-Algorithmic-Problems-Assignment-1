@@ -7,13 +7,22 @@
 
 int main(int argc,char *argv[])
 {
-    char* input_path;
-    char* output_path;
-    char* query_path;
+    char* inputFile;
+    char* outputFile;
+    char* queryFile;
     int k;
     int L;
-    int number_of_nearest;
-    int radius;
+    int numberOfNN;
+    int rad;
+    int numOfLines = 0;
+    int numOfElements;
+    char* pch;
+    ssize_t read;
+    char* line;
+    ssize_t len = 0;  
+    FILE* inputFilePtr;
+    FILE* queryFilePtr;
+    FILE* outputFilePtr;
 
     if(argc != 15){
         printf("Not enough arguments\n");
@@ -34,7 +43,7 @@ int main(int argc,char *argv[])
             exit(1);
         }
         //–q <query file>
-        input_path = argv[2];
+        inputFile = argv[2];
         if(strcmp(argv[3], "-q") == 0){
             if( access( argv[4], F_OK ) == 0 ) {
                 // file exists
@@ -49,7 +58,7 @@ int main(int argc,char *argv[])
             exit(1);
         }
         
-        query_path = argv[4];
+        queryFile = argv[4];
         //–k <int>
         if(strcmp(argv[5], "-k") == 0){
             // we want integer
@@ -113,7 +122,7 @@ int main(int argc,char *argv[])
             exit(1);
         }
 
-        output_path = argv[10];
+        outputFile = argv[10];
         
         if(strcmp(argv[11], "-N") == 0){
             // we want integer
@@ -132,7 +141,7 @@ int main(int argc,char *argv[])
                 exit(1);
             }
             // else int
-            number_of_nearest = atoi(argv[12]);
+            numberOfNN = atoi(argv[12]);
         }else{
             printf("Incorrect arguments\n");
             exit(1);
@@ -155,7 +164,7 @@ int main(int argc,char *argv[])
                 exit(1);
             }
             // else int
-            radius = atoi(argv[14]);
+            rad = atoi(argv[14]);
         }else{
             printf("Incorrect arguments\n");
             exit(1);
@@ -165,6 +174,49 @@ int main(int argc,char *argv[])
         printf("Incorrect arguments\n");
         exit(1);
     }
+
+    /// all good 
+
+    inputFilePtr = fopen(inputFile,"r");
+    if( inputFilePtr == 0){
+        perror("Problem when opening : ");
+    }
+
+    queryFilePtr = fopen(queryFile,"r");
+    if( queryFilePtr == 0){
+        perror("Problem when opening : ");
+    }
+
+    outputFilePtr = fopen(outputFile,"r");
+    if( outputFilePtr == 0){
+        perror("Problem when opening : ");
+    }
     
+    while ((read = getline(&line, &len, inputFilePtr)) != -1) 
+    {
+        numOfLines++;
+        // printf("Retrieved line of length %zu:\n", read);
+        // printf(" = %s", line);
+        pch = strtok (line," ");
+        while (pch != NULL)
+        {
+            if(*pch != '\r')
+            {
+                printf ("%s\n",pch);
+                numOfElements++;
+            } 
+            pch = strtok (NULL, " ");
+
+            printf(" element = %d\n",numOfElements);
+        }
+    }
+    //printf("num of Items: %d\n",numOfLines);
+
+    fclose(inputFilePtr);
+    fclose(queryFilePtr);
+    fclose(outputFilePtr);
+
+
+
     exit(1);
 }
