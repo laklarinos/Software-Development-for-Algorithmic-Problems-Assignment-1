@@ -42,7 +42,7 @@ int main(int argc,char *argv[])
     }
 
     printf("to moyni ths manass soy");
-    
+
     // open the files
     inputFilePtr = fopen(inputFile,"r");
     if( inputFilePtr == 0){
@@ -58,7 +58,7 @@ int main(int argc,char *argv[])
     if( outputFilePtr == 0){
         perror("Problem when opening : ");
     }
-    
+    ryr6
     while ((read = getline(&line, &len, inputFilePtr)) != -1) 
     {
         numOfLines++;
