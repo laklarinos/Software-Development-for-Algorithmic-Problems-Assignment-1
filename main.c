@@ -7,80 +7,164 @@
 
 int main(int argc,char *argv[])
 {
-    char *inputFile = argv[2];
-    char *queryFile = argv[4];
-    int k = atoi(argv[6]);
-    int l = atoi(argv[8]);
-    char *outputFile = argv[10];
-    int numOfNN = atoi(argv[12]);
-    int rad = atoi(argv[14]);
-    int numOfLines = 0;
-    int numOfElements = 0;
-    char chr;
-    size_t len = 0;
-    ssize_t read;
-    char* line;
-    char* pch;
+    char* input_path;
+    char* output_path;
+    char* query_path;
+    int k;
+    int L;
+    int number_of_nearest;
+    int radius;
 
-    FILE *inputFilePtr;
-    FILE *queryFilePtr;
-    FILE *outputFilePtr;
+    if(argc != 15){
+        printf("Not enough arguments\n");
+        exit(1);
+    }
+
+    printf("Damiane gamiesai\n");
     
-    printf("Gamiesai!\n");
-
-    // check if files exist
-    if(access( inputFile, F_OK )) {
-        printf("File : %s does not exist\n", inputFile);
-        exit(1);
-    }
-    if(access( queryFile, F_OK )) {
-        printf("File : %s does not exist\n", queryFile);
-        exit(1);
-    }
-    if(access( outputFile, F_OK )) {
-        printf("File : %s does not exist\n", outputFile);
-        exit(1);
-    }
-
-    printf("to moyni ths manass soy");
-
-    // open the files
-    inputFilePtr = fopen(inputFile,"r");
-    if( inputFilePtr == 0){
-        perror("Problem when opening : ");
-    }
-
-    queryFilePtr = fopen(queryFile,"r");
-    if( queryFilePtr == 0){
-        perror("Problem when opening : ");
-    }
-
-    outputFilePtr = fopen(outputFile,"r");
-    if( outputFilePtr == 0){
-        perror("Problem when opening : ");
-    }
-    ryr6
-    while ((read = getline(&line, &len, inputFilePtr)) != -1) 
-    {
-        numOfLines++;
-        // printf("Retrieved line of length %zu:\n", read);
-        // printf(" = %s", line);
-        pch = strtok (line," ");
-        while (pch != NULL)
-        {
-            if(*pch != '\r')
-            {
-                printf ("%s\n",pch);
-                numOfElements++;
-            } 
-            pch = strtok (NULL, " ");
-
-            printf(" element = %d\n",numOfElements);
+    //–i <input file>
+    if(strcmp(argv[1], "-i") == 0){
+        // the next argument should be the dataset path
+        if( access( argv[2], F_OK ) == 0 ) {
+            // file exists
+            printf("File exists\n");
+        } else {
+            // file doesn't exist
+            printf("File: %s does not exist\n", argv[2]);
+            exit(1);
         }
-    }
-    //printf("num of Items: %d\n",numOfLines);
+        //–q <query file>
+        input_path = argv[2];
+        if(strcmp(argv[3], "-q") == 0){
+            if( access( argv[4], F_OK ) == 0 ) {
+                // file exists
+                printf("File exists\n");
+            } else {
+                // file doesn't exist
+                printf("File: %s does not exist\n", argv[4]);
+                exit(1);
+            }  
+        }else{
+            printf("Incorrect arguments\n");
+            exit(1);
+        }
+        
+        query_path = argv[4];
+        //–k <int>
+        if(strcmp(argv[5], "-k") == 0){
+            // we want integer
+            int counter = 0;
+            int flag = 0;
+            while(argv[6][counter]!='\0'){
+                if(!isdigit(argv[6][counter])){
+                    flag = 1;
+                    break;
+                }
+                counter++;
+            }
+            if(flag){
+                // not an int...
+                printf("Argument #%d needs to be an int\n", 6);
+                exit(1);
+            }
+            // else int
+            k = atoi(argv[6]);
+        }else{
+            printf("Incorrect arguments\n");
+            exit(1);
+        }
 
-    fclose(inputFilePtr);
-    fclose(queryFilePtr);
-    fclose(outputFilePtr);
+        if(strcmp(argv[7], "-L") == 0){
+            // we want integer
+            int counter = 0;
+            int flag = 0;
+            while(argv[8][counter]!='\0'){
+                if(!isdigit(argv[8][counter])){
+                    flag = 1;
+                    break;
+                }
+                counter++;
+            }
+            if(flag){
+                // not an int...
+                printf("Argument #%d needs to be an int\n", 8);
+                exit(1);
+            }
+            // else int
+            L = atoi(argv[8]);
+        }else{
+            printf("Incorrect arguments\n");
+            exit(1);
+        }
+
+        // -o outputfile
+
+        if(strcmp(argv[9], "-o") == 0){
+            if( access( argv[10], F_OK ) == 0 ) {
+                // file exists
+                printf("File exists\n");
+            } else {
+                // file doesn't exist
+                printf("File: %s does not exist\n", argv[10]);
+                exit(1);
+            }  
+        }else{
+            printf("Incorrect arguments\n");
+            exit(1);
+        }
+
+        output_path = argv[10];
+        
+        if(strcmp(argv[11], "-N") == 0){
+            // we want integer
+            int counter = 0;
+            int flag = 0;
+            while(argv[12][counter]!='\0'){
+                if(!isdigit(argv[12][counter])){
+                    flag = 1;
+                    break;
+                }
+                counter++;
+            }
+            if(flag){
+                // not an int...
+                printf("Argument #%d needs to be an int\n", 12);
+                exit(1);
+            }
+            // else int
+            number_of_nearest = atoi(argv[12]);
+        }else{
+            printf("Incorrect arguments\n");
+            exit(1);
+        }
+
+        if(strcmp(argv[13], "-R") == 0){
+            // we want integer
+            int counter = 0;
+            int flag = 0;
+            while(argv[14][counter]!='\0'){
+                if(!isdigit(argv[14][counter])){
+                    flag = 1;
+                    break;
+                }
+                counter++;
+            }
+            if(flag){
+                // not an int...
+                printf("Argument #%d needs to be an int\n", 8);
+                exit(1);
+            }
+            // else int
+            radius = atoi(argv[14]);
+        }else{
+            printf("Incorrect arguments\n");
+            exit(1);
+        }
+
+    }else{
+        printf("Incorrect arguments\n");
+        exit(1);
+    }
+    
+    exit(1);
 }
