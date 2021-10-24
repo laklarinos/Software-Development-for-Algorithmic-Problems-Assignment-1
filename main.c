@@ -25,7 +25,8 @@ int main(int argc,char *argv[])
     FILE *inputFilePtr;
     FILE *queryFilePtr;
     FILE *outputFilePtr;
-   
+    
+    printf("Gamiesai!\n");
 
     // check if files exist
     if(access( inputFile, F_OK )) {
