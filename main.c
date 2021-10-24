@@ -17,14 +17,15 @@ int main(int argc,char *argv[])
     int numOfLines = 0;
     int numOfElements = 0;
     char chr;
-
-    FILE *inputFilePtr;
-    FILE *queryFilePtr;
-    FILE *outputFilePtr;
     size_t len = 0;
     ssize_t read;
     char* line;
     char* pch;
+
+    FILE *inputFilePtr;
+    FILE *queryFilePtr;
+    FILE *outputFilePtr;
+   
 
     // check if files exist
     if(access( inputFile, F_OK )) {
@@ -40,6 +41,8 @@ int main(int argc,char *argv[])
         exit(1);
     }
 
+    printf("to moyni ths manass soy");
+    
     // open the files
     inputFilePtr = fopen(inputFile,"r");
     if( inputFilePtr == 0){
