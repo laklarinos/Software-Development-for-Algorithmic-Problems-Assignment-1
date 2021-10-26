@@ -1,9 +1,4 @@
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <errno.h>
-#include <ctype.h>
+#include "includes.h"
 #include "parsingInit.h"
 #include "others.h"
 
@@ -25,6 +20,7 @@ int main(int argc,char *argv[])
         exit(1);
     }
 
+    //define arguments
     inputFile = argv[2];
     queryFile = argv[4];
     outputFile = argv[10];
@@ -48,12 +44,12 @@ int main(int argc,char *argv[])
         exit(1);
     }
 
-    // for(int i = 0; i < numOfLines; i++){
-    //     for(int j = 0; j < arrayOfElementsPerLine[i]; j++){
-    //         printf("%d ", arrayOfPointersToLinesElements[i][j]);
-    //     }
-    //     printf("\n\n");
-    // }
+    for(int i = 0; i < numOfLines; i++){
+        for(int j = 0; j < arrayOfElementsPerLine[i]; j++){
+            printf("%d ", arrayOfPointersToLinesElements[i][j]);
+        }
+        printf("\n\n");
+    }
 
     queryFilePtr = fopen(queryFile,"r");
     if( queryFilePtr == 0){
@@ -65,6 +61,11 @@ int main(int argc,char *argv[])
         perror("Problem when opening : ");
     }
     //now we have the number of lines and the number of elements per line...
+    //HashTable initialization...
+
+    //L hash tables...
+
+    for(int )
 
     //fclose(inputFilePtr);
     fclose(queryFilePtr);
