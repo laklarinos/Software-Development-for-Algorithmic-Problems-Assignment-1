@@ -1,9 +1,11 @@
 #ifndef INCLUDES
 #define INCLUDES
-    #include <stdio.h>
-    #include <string.h>
-    #include <stdlib.h>
+    #include <iostream>
+    #include <string>
+    #include <cstdlib>
     #include <unistd.h>
+    #include <cstring>
     #include <errno.h>
-    #include <ctype.h>
+    #include <fstream>
+    #include <sstream>
 #endif

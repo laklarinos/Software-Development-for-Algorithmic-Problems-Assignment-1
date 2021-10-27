@@ -1,5 +1,5 @@
 #include "others.h"
-
+using namespace std;
 bool checkCommandLineArguments(int argcInt, char* argvArray[]){
     
     int k;
@@ -19,7 +19,7 @@ bool checkCommandLineArguments(int argcInt, char* argvArray[]){
     char* outputFile; // na to doume
 
     if(argcInt != 15){
-        printf("Not enough arguments\n");
+        cout << "not enough arguments\n";
         return 1;
     }
     
@@ -28,10 +28,10 @@ bool checkCommandLineArguments(int argcInt, char* argvArray[]){
         // the next argument should be the dataset path
         if( access( argvArray[2], F_OK ) == 0 ) {
             // file exists
-            printf("File exists\n");
+            cout << "file exists\n";
         } else {
             // file doesn't exist
-            printf("File: %s does not exist\n", argvArray[2]);
+            cout << "File: "<<argvArray[2] << "does not exist\n";
             return 1;
         }
         //–q <query file>
@@ -39,14 +39,14 @@ bool checkCommandLineArguments(int argcInt, char* argvArray[]){
         if(strcmp(argvArray[3], "-q") == 0){
             if( access( argvArray[4], F_OK ) == 0 ) {
                 // file exists
-                printf("File exists\n");
+                cout << "File Exists\n";
             } else {
                 // file doesn't exist
-                printf("File: %s does not exist\n", argvArray[4]);
+                cout << "File: "<< argvArray[4] << " does not exist\n";
                 return 1;
             }  
         }else{
-            printf("Incorrect arguments\n");
+            cout << "Incorrect arguments\n";
             return 1;
         }
         
@@ -65,13 +65,13 @@ bool checkCommandLineArguments(int argcInt, char* argvArray[]){
             }
             if(flag){
                 // not an int...
-                printf("Argument #%d needs to be an int\n", 6);
+                cout << "Argument 6 needs to be an int\n";
                 return 1;
             }
             // else int
             //k = atoi(argvArray[6]);
         }else{
-            printf("Incorrect arguments\n");
+            cout << "Incorrect arguments\n";
             return 1;
         }
 
@@ -88,13 +88,13 @@ bool checkCommandLineArguments(int argcInt, char* argvArray[]){
             }
             if(flag){
                 // not an int...
-                printf("Argument #%d needs to be an int\n", 8);
+                cout << "Argument 8 needs to be an int\n";
                 return 1;
             }
             // else int
             //L = atoi(argvArray[8]);
         }else{
-            printf("Incorrect arguments\n");
+            cout << "Incorrect arguments\n";
             return 1;
         }
 
@@ -106,11 +106,11 @@ bool checkCommandLineArguments(int argcInt, char* argvArray[]){
                 printf("File exists\n");
             } else {
                 // file doesn't exist
-                printf("File: %s does not exist\n", argvArray[10]);
+                cout << "File " << argvArray[10] << " does not exist\n";
                 return 1;
             }  
         }else{
-            printf("Incorrect arguments\n");
+            cout << "Incorrect arguments\n";
             return 1;
         }
 
@@ -129,13 +129,13 @@ bool checkCommandLineArguments(int argcInt, char* argvArray[]){
             }
             if(flag){
                 // not an int...
-                printf("Argument #%d needs to be an int\n", 12);
+                cout << "Argument 12 needs to be an int\n";
                 return 1;
             }
             // else int
             //numberOfNN = atoi(argvArray[12]);
         }else{
-            printf("Incorrect arguments\n");
+            cout << "Incorrect arguments\n";
             return 1;
         }
 
@@ -152,18 +152,18 @@ bool checkCommandLineArguments(int argcInt, char* argvArray[]){
             }
             if(flag){
                 // not an int...
-                printf("Argument #%d needs to be an int\n", 8);
+                cout << "Argument 8 needs to be an int\n";
                 return 1;
             }
             // else int
             //rad = atoi(argvArray[14]);
         }else{
-            printf("Incorrect arguments\n");
+            cout << "Incorrect arguments\n";
             return 1;
         }
 
     }else{
-        printf("Incorrect arguments\n");
+        cout << "Incorrect arguments\n";
         return 1;
     }
     return 0; //correct command line arguments

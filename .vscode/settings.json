@@ -1,6 +1,8 @@
 {
     "C_Cpp.errorSquiggles": "Enabled",
     "files.associations": {
-        "hashtable.h": "c"
+        "hashtable.h": "c",
+        "iostream": "cpp",
+        "iosfwd": "cpp"
     }
 }
