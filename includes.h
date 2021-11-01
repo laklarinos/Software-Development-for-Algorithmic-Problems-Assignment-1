@@ -8,4 +8,8 @@
     #include <errno.h>
     #include <fstream>
     #include <sstream>
+    #include <list> 
+    #include <vector>
+    #include <random>
+    #include <cassert>
 #endif

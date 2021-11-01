@@ -1,22 +1,17 @@
 #ifndef LINKEDLIST
 #define LINKEDLIST
 #include "includes.h"
+#include "others.h"
 using namespace std;
+
 class linkedListNode{
-   
    private:
-      int** pVector;
+      point* pVector;
       int key;
-      struct linkedListNode *next; 
-   
    public:
-      void printList();
-      void insertFirst(int key, int** pVectorGiven);
-      struct linkedListNode* deleteFirst();
-      bool isEmpty();
-      int length();
-      struct linkedListNode* find(int key);
-      struct linkedListNode* delete(int key);
+      linkedListNode(point* pGiven, int key);
+      point* getPVector();
+      int getKey();
 };
 
 #endif

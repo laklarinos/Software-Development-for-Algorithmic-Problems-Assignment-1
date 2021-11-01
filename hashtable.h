@@ -1,26 +1,22 @@
-#include "includes.h"
-#define SIZE 20
 
-// Struct to store data of each item
-// typedef struct DataItem {
-//    int data;   
-//    int key;
-// } DataItem;
+#ifndef HASH
+#define HASH
+    #include "includes.h"
+    #include "linkedlist.h"
+    #include "others.h"
 
-typedef struct item
-
-DataItem* hashArray[SIZE]; 
-DataItem* dummyItem;
-DataItem* item;
-
-// Structs prototypes
-struct DataItem* hashArray[SIZE]; 
-struct DataItem* dummyItem;
-struct DataItem* item;
-
-// Function prototypes
-int hashCode(int key);
-struct DataItem *search(int key);
-void insert(int key,int data);
-struct DataItem* delete(struct DataItem* item);
-void display();
+    class hashTable{
+        private:
+            vector<list<linkedListNode*>> array;
+            int size;
+        public:
+            int insert(point* pGiven, int w, vector<int>& rVector, vector<vAndT>& vAndTVector, int k);
+            int search(point* pGiven);
+            int hashFunction(point* pGiven, vector<vAndT> & vAndTForHash, int k, int w, std:: vector<int> &rVector);
+            ~hashTable();
+            hashTable(int size);
+            vector<list<linkedListNode*>> getArray();
+            void print();
+    };
+    
+#endif

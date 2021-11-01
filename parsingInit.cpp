@@ -1,12 +1,13 @@
 #include "parsingInit.h"
 using namespace std;
-int** parsInit(char* inputFile, int* numLinesReturn, int* arrayOfElementsPerLineReturn){
+
+int parsInit(char* inputFile, int* numLinesReturn, int* arrayOfElementsPerLineReturn, vector<point>& vec, int& numOfDimensions){
     fstream inputFilePtr;
 
     inputFilePtr.open(inputFile);
     if(!inputFilePtr){
         cout << "Error,  file does not exist\n";
-        return NULL;
+        return 1;
     }
 
     int numOfLines = 0;
@@ -18,7 +19,6 @@ int** parsInit(char* inputFile, int* numLinesReturn, int* arrayOfElementsPerLine
     int lineCounter = 0; 
     int elementCounter = 0;
 
-    int** arrayOfPointersToLinesElements; // has pointers to int* arrays that contains line's elements
     int elementsPerLine;
 
     while (getline(inputFilePtr, line)) 
@@ -30,56 +30,52 @@ int** parsInit(char* inputFile, int* numLinesReturn, int* arrayOfElementsPerLine
     inputFilePtr.open(inputFile);
     if(!inputFilePtr){
         cout << "Error when opening the file\n";
-        return NULL;
-    }
-
-    arrayOfPointersToLinesElements = (int**)malloc(numOfLines*sizeof(int*));
-    if(arrayOfPointersToLinesElements == NULL){
-        cout << "Error when malloc\n";
-        return NULL;
+        return 1;
     }
 
     elementsPerLine = 0;
     istringstream is(line);
     string token;
 
-    while (getline(is, token, ' '))
-    // printf("Retrieved line of length %zu:\n", read);
-    {
+    while(getline(is, token, ' ')){
+        // printf("Retrieved line of length %zu:\n", read);
         if(token != "\r")
         {
             elementsPerLine++; // +1 because of ID...
-        } 
-        //printf(" element = %d\n",numOfElements);
+        }
     }
 
-    cout << elementsPerLine << endl;
-
+    numOfDimensions = elementsPerLine-1;
     inputFilePtr.close();
     inputFilePtr.open(inputFile);
+
     if(!inputFilePtr){
-        return NULL;
+        cout << "Problem when opening the file\n";
+        return 1;
     }
 
     lineCounter = 0;
     while (getline(inputFilePtr,line)) 
     {
         istringstream is(line);
-        // printf("Retrieved line of length %zu:\n", read);
         elementCounter = 0;
-        arrayOfPointersToLinesElements[lineCounter] = (int*) malloc(elementsPerLine*sizeof(int));
+        vector<int> vct;
+        auto itPos = vec.begin() + lineCounter;
         while (getline(is, token, ' '))
         {
             if(token != "\r")
             {
-                arrayOfPointersToLinesElements[lineCounter][elementCounter] = stoi(token);
+                auto itPos1 = vct.begin()+elementCounter;
+                vct.insert(itPos1, stoi(token));
+                elementCounter++;
             }
-            elementCounter++;
         }
+        point pt(vct);
+        vec.insert(itPos, pt);
         lineCounter++;
-        //printf("%d num elements\n",numOfElements);
     }
+    
     *numLinesReturn = numOfLines;
     *arrayOfElementsPerLineReturn = elementsPerLine;
-    return arrayOfPointersToLinesElements;
+    return 0;
 }

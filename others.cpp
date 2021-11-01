@@ -168,3 +168,36 @@ bool checkCommandLineArguments(int argcInt, char* argvArray[]){
     }
     return 0; //correct command line arguments
 }
+
+        /// point /// 
+point:: point(vector<int> pVector){
+    this->pVector = pVector;
+}
+
+int point:: getDimensions(){
+    return this->dimensions;
+}
+
+vector<int>* point:: getVector(){
+    return &(this->pVector);
+}
+
+point:: ~point(){}
+
+int euclideanRemainder(int a, int b)
+{
+    assert(b != 0);
+    int r = a % b;
+    return r >= 0 ? r : r + std::abs(b);
+}
+
+int myPow(int x, int p)
+{
+  if (p == 0) return 1;
+  if (p == 1) return x;
+  
+  int tmp = myPow(x, p/2);
+  if (p%2 == 0) return tmp * tmp;
+  else return x * tmp * tmp;
+  
+}
