@@ -182,6 +182,7 @@ vector<int>* point:: getVector(){
     return &(this->pVector);
 }
 
+point:: point(){}
 point:: ~point(){}
 
 int euclideanRemainder(int a, int b)

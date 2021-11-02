@@ -1,7 +1,7 @@
 #include "parsingInit.h"
 using namespace std;
 
-int parsInit(char* inputFile, int* numLinesReturn, int* arrayOfElementsPerLineReturn, vector<point>& vec, int& numOfDimensions){
+int parsInit(char* inputFile,  vector<point>& vecPoints, int* numLinesReturn, int* numOfElements){
     fstream inputFilePtr;
 
     inputFilePtr.open(inputFile);
@@ -11,7 +11,6 @@ int parsInit(char* inputFile, int* numLinesReturn, int* arrayOfElementsPerLineRe
     }
 
     int numOfLines = 0;
-    int numOfElements = 0;
     char* pch;
     ssize_t read;
     string line;
@@ -19,63 +18,22 @@ int parsInit(char* inputFile, int* numLinesReturn, int* arrayOfElementsPerLineRe
     int lineCounter = 0; 
     int elementCounter = 0;
 
-    int elementsPerLine;
+    int elementsPerLine = 0;
+    string token;
 
     while (getline(inputFilePtr, line)) 
     {
         numOfLines++;
-    }
-    //we close and reopen so that we can start from beggining.
-    inputFilePtr.close();
-    inputFilePtr.open(inputFile);
-    if(!inputFilePtr){
-        cout << "Error when opening the file\n";
-        return 1;
-    }
-
-    elementsPerLine = 0;
-    istringstream is(line);
-    string token;
-
-    while(getline(is, token, ' ')){
-        // printf("Retrieved line of length %zu:\n", read);
-        if(token != "\r")
-        {
-            elementsPerLine++; // +1 because of ID...
-        }
-    }
-
-    numOfDimensions = elementsPerLine-1;
-    inputFilePtr.close();
-    inputFilePtr.open(inputFile);
-
-    if(!inputFilePtr){
-        cout << "Problem when opening the file\n";
-        return 1;
-    }
-
-    lineCounter = 0;
-    while (getline(inputFilePtr,line)) 
-    {
         istringstream is(line);
-        elementCounter = 0;
-        vector<int> vct;
-        auto itPos = vec.begin() + lineCounter;
-        while (getline(is, token, ' '))
-        {
-            if(token != "\r")
-            {
-                auto itPos1 = vct.begin()+elementCounter;
-                vct.insert(itPos1, stoi(token));
-                elementCounter++;
-            }
-        }
-        point pt(vct);
-        vec.insert(itPos, pt);
-        lineCounter++;
+        vector<int> vecInt{istream_iterator<int>{is},
+                      istream_iterator<int>{}};
+        point pointToInsert(vecInt);
+        vecPoints.push_back(pointToInsert);
     }
+
+    elementsPerLine = vecPoints[0].pVector.size();
     
     *numLinesReturn = numOfLines;
-    *arrayOfElementsPerLineReturn = elementsPerLine;
+    *numOfElements = elementsPerLine;
     return 0;
 }

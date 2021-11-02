@@ -8,6 +8,12 @@ typedef struct vAndT{
     float t;
 }vAndT;
 
+typedef struct lshConstants{
+    int w;
+    int k;
+    int L;
+}lshConstants;
+
 class point{
     private:
         int dimensions;
@@ -16,6 +22,7 @@ class point{
         std::vector<int>* getVector();
         int getDimensions();
         point(std::vector<int> pVector);
+        point();
         ~point();
 };
 

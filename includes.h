@@ -12,4 +12,6 @@
     #include <vector>
     #include <random>
     #include <cassert>
+    #include <algorithm>
+    #include <iterator>
 #endif

@@ -3,6 +3,6 @@
     #include "includes.h"
     #include "others.h"
     using namespace std;
-    int parsInit(char* inputFile, int* numLinesReturn, int* arrayOfElementsPerLineReturn, vector<point>& vec, int& numOfDimensions); // opens inputFile nad initializes the 2d array...
+    int parsInit(char* inputFile,  vector<point>& vecPoints, int* numLinesReturn, int* numOfElements); // opens inputFile nad initializes the 2d array...
     void clean(int**);
 #endif
