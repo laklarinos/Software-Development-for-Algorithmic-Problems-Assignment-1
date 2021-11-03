@@ -32,7 +32,7 @@ int main(int argc,char *argv[])
     if(checkArgs){
         exit(1);
     }
-
+    
     //define arguments
     inputFile = argv[2];
     queryFile = argv[4];
@@ -107,8 +107,11 @@ int main(int argc,char *argv[])
     // first things first 
     // read query_file line by line...
 
+    inputFile = "query_small_id";
+
     vector<point> arrayOfQueryPoints;
     res = parsInit(inputFile, arrayOfQueryPoints, &numOfLinesQ, &numOfElementsQ);
+
     numOfDimensionsQ = numOfElementsQ - 1; 
     if(res == 1){
         exit(1);
@@ -123,11 +126,11 @@ int main(int argc,char *argv[])
         cout << "HASH #" << i << endl;
         cout << "----------------\n\n";
         cout << "POINT: " << endl;
-        for(int j = 0; j < arrayOfQueryPoints[0].pVector.size(); j++){
-            cout << arrayOfQueryPoints[0].pVector[j] << " ";
+        for(int j = 0; j < arrayOfQueryPoints[1].pVector.size(); j++){
+            cout << arrayOfQueryPoints[1].pVector[j] << " ";
         }
         cout << endl << endl;
-        hashTablesArray[i]->findNeighbors(&arrayOfQueryPoints[0]);
+        hashTablesArray[i]->findNeighbors(&arrayOfQueryPoints[1]);
     }
 
     exit(1);

@@ -1,5 +1,4 @@
 #include "hashtable.h"
-#include "others.h"
 hashTable:: hashTable(int size, lshConstants* lshCon, int numOfDimensions){
     this->array.resize(size);
     this->size = size;

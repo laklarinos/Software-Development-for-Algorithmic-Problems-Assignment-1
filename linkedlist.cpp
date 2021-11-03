@@ -12,3 +12,5 @@ point* linkedListNode::getPVector(){
 int linkedListNode:: getKey(){
     return this->key;
 }
+
+linkedListNode:: linkedListNode(){}

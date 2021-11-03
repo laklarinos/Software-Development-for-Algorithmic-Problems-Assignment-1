@@ -10,8 +10,10 @@ class linkedListNode{
       int key;
    public:
       linkedListNode(point* pGiven, int key);
+      linkedListNode();
       point* getPVector();
       int getKey();
 };
 
 #endif
+
