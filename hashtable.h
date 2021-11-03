@@ -2,7 +2,7 @@
 #ifndef HASH
 #define HASH
     #include "includes.h"
-    #include "linkedlist.h"
+    #include "linkedList.h"
     #include "others.h"
 
     class hashTable{

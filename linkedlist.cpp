@@ -1,4 +1,4 @@
-#include "linkedlist.h"
+#include "linkedList.h"
 using namespace std;
 
 ///// linked list node //////

@@ -1,7 +1,7 @@
 #include "includes.h"
 #include "parsingInit.h"
 #include "others.h"
-#include "hashtable.h"
+#include "hashTable.h"
 
 using namespace std;
 
