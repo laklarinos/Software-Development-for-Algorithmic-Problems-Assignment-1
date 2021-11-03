@@ -122,16 +122,23 @@ int main(int argc,char *argv[])
     }
     // we have initialized an array of objects-points from query file...
     // now let's find their nearest neighbors...
-    for(int i = 0; i < L; i++){
-        cout << "HASH #" << i << endl;
-        cout << "----------------\n\n";
-        cout << "POINT: " << endl;
-        for(int j = 0; j < arrayOfQueryPoints[1].pVector.size(); j++){
-            cout << arrayOfQueryPoints[1].pVector[j] << " ";
+    ofstream outputFileStream;
+    outputFile = "output.txt";
+    outputFileStream.open(outputFile,std::ios_base::app);
+
+    //return 1;
+    for(int i = 0; i < numOfLinesQ; i++){
+        outputFileStream << "POINT_ID: " << endl;
+        outputFileStream << arrayOfQueryPoints[i].pVector[0] << " ";
+        outputFileStream << endl;
+        for(int z = 0; z < L; z++){
+            outputFileStream << "HASH #" << z << endl;
+            outputFileStream << "----------------\n\n";
+            hashTablesArray[z]->findNeighbors(&arrayOfQueryPoints[i], outputFileStream);
         }
-        cout << endl << endl;
-        hashTablesArray[i]->findNeighbors(&arrayOfQueryPoints[1]);
     }
+
+    outputFileStream.close();
 
     exit(1);
 }

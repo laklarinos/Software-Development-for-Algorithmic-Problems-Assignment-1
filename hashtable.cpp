@@ -7,7 +7,7 @@ hashTable:: hashTable(int size, lshConstants* lshCon, int numOfDimensions){
 
     for(int j = 0; j <  lshCon->k; j++){
         auto itPos = this->rVector.begin() + j;
-        this->rVector.insert(itPos, rand()%10000);
+        this->rVector.insert(itPos, ( std::rand() % 100 ));
     }
 
     // produce...
@@ -38,18 +38,27 @@ hashTable:: hashTable(int size, lshConstants* lshCon, int numOfDimensions){
 }
 
 int hashTable:: insert(point* pGiven){
-    int key = hashFunction(pGiven);
+
+    int IDp = hashFunction(pGiven);
+    int key = euclideanRemainder(IDp, this->size);
+    // if(pGiven->pVector[0] == 1)
+    //     cout << IDp << endl;
+
+    if(pGiven->pVector[0] == 1)
+        cout << "IDP of respective NODE: " << IDp << endl;
+
     list<linkedListNode*> listPtr;
-    linkedListNode* nodePtr = new linkedListNode(pGiven, pGiven->pVector[0]);
+    linkedListNode* nodePtr = new linkedListNode(pGiven, pGiven->pVector[0], IDp);
     listPtr.push_back(nodePtr);
     auto itPos = array.begin() + key;
-    if(this->array[key].empty()){
-        // empty list == first item...
-        this->array.insert(itPos, listPtr);
-    }else{
-        // list is not empty 
-        this->array[key].push_back(nodePtr);
-    }
+    this->array[key].push_back(nodePtr);
+    // if(this->array[key].empty()){
+    //     // empty list == first item...
+    //     this->array.insert(itPos, listPtr);
+    // }else{
+    //     // list is not empty 
+    //     this->array[key].push_back(nodePtr);
+    // }
 }
 
 int hashTable:: search(point* pGiven){}
@@ -80,9 +89,9 @@ int hashTable:: hashFunction(point* pGiven){
 
     idP = std:: inner_product(hi.begin(), hi.end(), rVector.begin(), 0);
     idP = euclideanRemainder(idP, M);
-    gP = euclideanRemainder(idP, this->size);
+    //gP = euclideanRemainder(idP, this->size);
 
-    return gP;
+    return idP;
 }
 
 hashTable:: ~hashTable(){
@@ -92,13 +101,15 @@ hashTable:: ~hashTable(){
 void hashTable:: print(){
     for(int i = 0; i < this->size; i++){
         if(!this->array[i].empty()){
-            cout << "Bucket: " << i << endl;
+            //cout << "Bucket: " << i << endl;
             for(std::list<linkedListNode*>::iterator it = (this->array[i]).begin(); it != (this->array[i]).end(); it++){
-                point* ptr = (*it)->getPVector();
-                std::cout << ptr->pVector.at(0) << ' ';                    
-                cout << endl;
+                point* ptr = (*it)->pVector;
+                if(ptr->pVector[0] == 1){
+                    cout <<(*it)->getIDp() << "->";                  
+                    cout << endl;
+                }
             }
-            cout << "\n";
+            //cout << "\n";
         }
     }
 }
@@ -107,18 +118,24 @@ vector<list<linkedListNode*>> hashTable:: getArray(){
     return this->array;
 }
 
-list<linkedListNode>* hashTable:: findNeighbors(point* pGiven){
+list<linkedListNode>* hashTable:: findNeighbors(point* pGiven, ofstream& outputFileStream){
     // given a point we find its nearest neighbors
-    int key = hashFunction(pGiven);
+    int IDp = hashFunction(pGiven);
+    int key = euclideanRemainder(IDp, this->size);
     list<linkedListNode*> ::iterator it;
     int c = 0;
     for (it = this->array[key].begin(); it != this->array[key].end(); ++it){
         c++;
-        cout << "\nNeighbor #" << c << " is: \n";
+        outputFileStream << "\nNeighbor #" << c << " is: \n";
+
+        int IDpNode = (*it)->getIDp();
         point* pointPtr = (*it)->getPVector();
-        for(int j = 0; j < pointPtr->pVector.size(); j++)
-            cout << pointPtr->pVector[j] << " ";
-        cout << "\n";
+
+        if(IDp == IDpNode){
+            outputFileStream << "IDp's are equal, "<<IDp << endl;
+        }
+        outputFileStream << pointPtr->pVector[0] << " ";
+        outputFileStream << "\n";
     }
-    cout << "\n\n";
+    outputFileStream << "\n\n";
 }

@@ -38,7 +38,7 @@
             void print();
 
             // given a point, it finds its neighbors...
-            list<linkedListNode>* findNeighbors(point* pGiven);
+            list<linkedListNode>* findNeighbors(point* pGiven, ofstream& outputFileStream);
     };
     
 #endif

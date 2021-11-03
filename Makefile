@@ -24,12 +24,14 @@ linkedList.o: linkedList.cpp others.cpp
 
 	$(CC)   -c linkedList.cpp others.cpp
 
+run:
+
+	./lsh -i input_small_id_emiris -q query_small_id -k 10 -L 10 -o output.txt -N 10 -R 10
+
 clean: 
 
 	rm -f *.o
 
-#run:
-#./lsh -i test_input.txt -q query_small_id -k 10 -L 10 -o output.txt -N 10 -R 10
 	
 	
 

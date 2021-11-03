@@ -6,13 +6,15 @@ using namespace std;
 
 class linkedListNode{
    private:
-      point* pVector;
       int key;
+      int IDp;
    public:
-      linkedListNode(point* pGiven, int key);
+      linkedListNode(point* pGiven, int key, int IDp);
+      point* pVector;
       linkedListNode();
       point* getPVector();
       int getKey();
+      int getIDp();
 };
 
 #endif
