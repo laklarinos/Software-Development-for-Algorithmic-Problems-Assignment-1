@@ -1,21 +1,25 @@
-#include "linkedList.h"
+#include "linkedlist.h"
 using namespace std;
 
 ///// linked list node //////
-linkedListNode:: linkedListNode(point* pGiven, int key, int IDp){
+linkedListNode::linkedListNode(point *pGiven, int key, int IDp)
+{
     this->pVector = pGiven;
     this->key = key;
     this->IDp = IDp;
 }
-point* linkedListNode::getPVector(){
+point *linkedListNode::getPVector()
+{
     return this->pVector;
 }
-int linkedListNode:: getKey(){
+int linkedListNode::getKey()
+{
     return this->key;
 }
 
-linkedListNode:: linkedListNode(){}
+linkedListNode::linkedListNode() {}
 
-int linkedListNode:: getIDp(){
+int linkedListNode::getIDp()
+{
     return this->IDp;
 }

@@ -1,32 +1,32 @@
 CC = g++ -g -std=c++11 
 
-lsh: main.o parsingInit.o hashTable.o linkedList.o others.o
+lsh: main.o parsinginit.o hashtable.o linkedlist.o others.o
 
-	$(CC) -o lsh main.o parsingInit.o hashTable.o linkedList.o others.o
+	$(CC) -o lsh main.o parsinginit.o hashtable.o linkedlist.o others.o -lm
 
-main.o: main.cpp others.cpp parsingInit.cpp hashTable.cpp
+main.o: main.cpp others.cpp parsinginit.cpp hashtable.cpp
 
-	$(CC) -g -c main.cpp others.cpp parsingInit.cpp hashTable.cpp
+	$(CC) -g -c main.cpp others.cpp parsinginit.cpp hashtable.cpp
 
 others.o: others.cpp
 
 	$(CC) -g -c others.cpp
 
-parsingInit.o: parsingInit.cpp others.cpp
+parsinginit.o: parsinginit.cpp others.cpp
 
-	$(CC)   -c parsingInit.cpp others.cpp
+	$(CC)   -c parsinginit.cpp others.cpp
 
-hashTable.o: hashTable.cpp others.cpp linkedList.cpp
+hashtable.o: hashtable.cpp others.cpp linkedlist.cpp
 
-	$(CC)   -c hashTable.cpp others.cpp linkedList.cpp
+	$(CC)   -c hashtable.cpp others.cpp linkedlist.cpp
 
-linkedList.o: linkedList.cpp others.cpp
+linkedlist.o: linkedlist.cpp others.cpp
 
-	$(CC)   -c linkedList.cpp others.cpp
+	$(CC)   -c linkedlist.cpp others.cpp
 
 run:
 
-	./lsh -i input_small_id_emiris -q query_small_id -k 10 -L 10 -o output.txt -N 10 -R 10
+	./lsh -i input_small_id_emiris -q query_small_id -k 10 -L 10 -o output.txt -N 2 -R 10000
 
 clean: 
 

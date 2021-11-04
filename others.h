@@ -3,30 +3,44 @@
 
 #include "includes.h"
 
-typedef struct vAndT{
+using namespace std;
+
+class point
+{
+private:
+    int dimensions;
+
+public:
+    std::vector<int> pVector;
+    std::vector<int> *getVector();
+    int getDimensions();
+    point(std::vector<int> pVector);
+    point();
+    ~point();
+};
+typedef struct kNearest
+{
+    vector<point *> nearestPoints;
+    vector<double> dist;
+    int size;
+} kNearest;
+typedef struct vAndT
+{
     std::vector<int> vVector;
     float t;
-}vAndT;
+} vAndT;
 
-typedef struct lshConstants{
+typedef struct lshConstants
+{
     int w;
     int k;
     int L;
-}lshConstants;
+} lshConstants;
 
-class point{
-    private:
-        int dimensions;
-    public:
-        std::vector<int> pVector;
-        std::vector<int>* getVector();
-        int getDimensions();
-        point(std::vector<int> pVector);
-        point();
-        ~point();
-};
-
-bool checkCommandLineArguments(int argcInt, char* argvArray[]);
+bool checkCommandLineArguments(int argcInt, char *argvArray[]);
 int euclideanRemainder(int a, int b);
 int myPow(int x, int p);
+double calculateDistance(point *point1, point *point2);
+void initKNearest(int k, kNearest *list);
+void sortNearest(kNearest *list);
 #endif

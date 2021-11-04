@@ -1,7 +1,7 @@
 {
     "C_Cpp.errorSquiggles": "Enabled",
     "files.associations": {
-        "hashtable.h": "c",
+        "hashtable.h": "cpp",
         "iostream": "cpp",
         "iosfwd": "cpp",
         "array": "cpp",
@@ -48,6 +48,6 @@
         "functional": "cpp",
         "numeric": "cpp",
         "random": "cpp",
-        "linkedlist.h": "c"
+        "linkedlist.h": "cpp"
     }
 }
