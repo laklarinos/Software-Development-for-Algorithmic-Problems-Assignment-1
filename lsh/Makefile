@@ -26,7 +26,7 @@ linkedlist.o: linkedlist.cpp others.cpp
 
 run:
 
-	./lsh -i input_small_id_emiris -q query_small_id -k 10 -L 10 -o output.txt -N 2 -R 10000
+	./lsh -i input_b_id -q query_small_id -k 10 -L 10 -o output.txt -N 5 -R 500
 
 clean: 
 

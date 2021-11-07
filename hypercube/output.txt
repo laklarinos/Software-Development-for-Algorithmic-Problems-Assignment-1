@@ -1,0 +1,840 @@
+Query: 1
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 2
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 3
+Nearest neighbor-1: 5581
+distanceCube: 654.105
+distanceTrue: 654.105
+
+R-nearest neigbors: 
+item_id: 5581
+item_id: 7651
+
+////////////////////////////////////////////////////////////
+Query: 4
+Nearest neighbor-1: 409
+distanceCube: 385.383
+distanceTrue: 385.383
+
+R-nearest neigbors: 
+item_id: 409
+
+////////////////////////////////////////////////////////////
+Query: 5
+Nearest neighbor-1: 8565
+distanceCube: 497.239
+distanceTrue: 497.239
+
+R-nearest neigbors: 
+item_id: 7074
+item_id: 8565
+
+////////////////////////////////////////////////////////////
+Query: 6
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 7
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 8
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 9
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 10
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 11
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 12
+Nearest neighbor-1: 5958
+distanceCube: 409.561
+distanceTrue: 409.561
+
+R-nearest neigbors: 
+item_id: 5958
+
+////////////////////////////////////////////////////////////
+Query: 13
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 14
+Nearest neighbor-1: 2690
+distanceCube: 453.499
+distanceTrue: 453.499
+
+R-nearest neigbors: 
+item_id: 2690
+
+////////////////////////////////////////////////////////////
+Query: 15
+Nearest neighbor-1: 6451
+distanceCube: 470.925
+distanceTrue: 470.925
+
+R-nearest neigbors: 
+item_id: 6451
+
+////////////////////////////////////////////////////////////
+Query: 16
+Nearest neighbor-1: 3
+distanceCube: 262.168
+distanceTrue: 262.168
+
+R-nearest neigbors: 
+item_id: 3
+
+////////////////////////////////////////////////////////////
+Query: 17
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 18
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 19
+Nearest neighbor-1: 5360
+distanceCube: 641.809
+distanceTrue: 641.809
+
+R-nearest neigbors: 
+item_id: 5360
+
+////////////////////////////////////////////////////////////
+Query: 20
+Nearest neighbor-1: 7709
+distanceCube: 636.321
+distanceTrue: 636.321
+
+R-nearest neigbors: 
+item_id: 7709
+
+////////////////////////////////////////////////////////////
+Query: 21
+Nearest neighbor-1: 6320
+distanceCube: 387.954
+distanceTrue: 387.954
+
+R-nearest neigbors: 
+item_id: 6320
+
+////////////////////////////////////////////////////////////
+Query: 22
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 23
+Nearest neighbor-1: 3367
+distanceCube: 673.741
+distanceTrue: 673.741
+
+R-nearest neigbors: 
+item_id: 3367
+
+////////////////////////////////////////////////////////////
+Query: 24
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 25
+Nearest neighbor-1: 4815
+distanceCube: 673.489
+distanceTrue: 673.489
+
+R-nearest neigbors: 
+item_id: 4815
+
+////////////////////////////////////////////////////////////
+Query: 26
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 27
+Nearest neighbor-1: 485
+distanceCube: 689.049
+distanceTrue: 689.049
+
+R-nearest neigbors: 
+item_id: 485
+
+////////////////////////////////////////////////////////////
+Query: 28
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 29
+Nearest neighbor-1: 30
+distanceCube: 400.945
+distanceTrue: 400.945
+
+R-nearest neigbors: 
+item_id: 30
+
+////////////////////////////////////////////////////////////
+Query: 30
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 31
+Nearest neighbor-1: 8212
+distanceCube: 589.265
+distanceTrue: 589.265
+
+R-nearest neigbors: 
+item_id: 8212
+
+////////////////////////////////////////////////////////////
+Query: 32
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 33
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 34
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 35
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 36
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 37
+Nearest neighbor-1: 5579
+distanceCube: 575.039
+distanceTrue: 575.039
+
+R-nearest neigbors: 
+item_id: 5579
+
+////////////////////////////////////////////////////////////
+Query: 38
+Nearest neighbor-1: 3299
+distanceCube: 478.008
+distanceTrue: 478.008
+
+R-nearest neigbors: 
+item_id: 3299
+item_id: 5594
+item_id: 6340
+
+////////////////////////////////////////////////////////////
+Query: 39
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 40
+Nearest neighbor-1: 7338
+distanceCube: 565.62
+distanceTrue: 565.62
+
+R-nearest neigbors: 
+item_id: 7338
+
+////////////////////////////////////////////////////////////
+Query: 41
+Nearest neighbor-1: 1582
+distanceCube: 443.446
+distanceTrue: 443.446
+
+R-nearest neigbors: 
+item_id: 1582
+
+////////////////////////////////////////////////////////////
+Query: 42
+Nearest neighbor-1: 1682
+distanceCube: 635.356
+distanceTrue: 635.356
+
+R-nearest neigbors: 
+item_id: 1682
+
+////////////////////////////////////////////////////////////
+Query: 43
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 44
+Nearest neighbor-1: 407
+distanceCube: 605.628
+distanceTrue: 605.628
+
+R-nearest neigbors: 
+item_id: 407
+
+////////////////////////////////////////////////////////////
+Query: 45
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 46
+Nearest neighbor-1: 6582
+distanceCube: 506.224
+distanceTrue: 506.224
+
+R-nearest neigbors: 
+item_id: 6582
+
+////////////////////////////////////////////////////////////
+Query: 47
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 48
+Nearest neighbor-1: 1436
+distanceCube: 566.893
+distanceTrue: 566.893
+
+R-nearest neigbors: 
+item_id: 1436
+item_id: 6200
+
+////////////////////////////////////////////////////////////
+Query: 49
+Nearest neighbor-1: 1866
+distanceCube: 589.782
+distanceTrue: 589.782
+
+R-nearest neigbors: 
+item_id: 1866
+
+////////////////////////////////////////////////////////////
+Query: 50
+Nearest neighbor-1: 1847
+distanceCube: 651.884
+distanceTrue: 651.884
+
+R-nearest neigbors: 
+item_id: 1847
+
+////////////////////////////////////////////////////////////
+Query: 51
+Nearest neighbor-1: 8356
+distanceCube: 551.764
+distanceTrue: 551.764
+
+R-nearest neigbors: 
+item_id: 8356
+
+////////////////////////////////////////////////////////////
+Query: 52
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 53
+Nearest neighbor-1: 548
+distanceCube: 330.419
+distanceTrue: 330.419
+
+R-nearest neigbors: 
+item_id: 548
+item_id: 5935
+
+////////////////////////////////////////////////////////////
+Query: 54
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 55
+Nearest neighbor-1: 164
+distanceCube: 651.488
+distanceTrue: 651.488
+
+R-nearest neigbors: 
+item_id: 164
+
+////////////////////////////////////////////////////////////
+Query: 56
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 57
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 58
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 59
+Nearest neighbor-1: 5618
+distanceCube: 609.729
+distanceTrue: 609.729
+
+R-nearest neigbors: 
+item_id: 5618
+
+////////////////////////////////////////////////////////////
+Query: 60
+Nearest neighbor-1: 5937
+distanceCube: 696.593
+distanceTrue: 696.593
+
+R-nearest neigbors: 
+item_id: 5937
+
+////////////////////////////////////////////////////////////
+Query: 61
+Nearest neighbor-1: 52
+distanceCube: 367.21
+distanceTrue: 367.21
+
+R-nearest neigbors: 
+item_id: 52
+item_id: 5193
+
+////////////////////////////////////////////////////////////
+Query: 62
+Nearest neighbor-1: 9184
+distanceCube: 647.157
+distanceTrue: 647.157
+
+R-nearest neigbors: 
+item_id: 9184
+
+////////////////////////////////////////////////////////////
+Query: 63
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 64
+Nearest neighbor-1: 7806
+distanceCube: 383.604
+distanceTrue: 383.604
+
+R-nearest neigbors: 
+item_id: 7806
+
+////////////////////////////////////////////////////////////
+Query: 65
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 66
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 67
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 68
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 69
+Nearest neighbor-1: 1968
+distanceCube: 626.994
+distanceTrue: 626.994
+
+R-nearest neigbors: 
+item_id: 1968
+item_id: 9925
+
+////////////////////////////////////////////////////////////
+Query: 70
+Nearest neighbor-1: 6844
+distanceCube: 561.47
+distanceTrue: 561.47
+
+R-nearest neigbors: 
+item_id: 6844
+item_id: 8628
+
+////////////////////////////////////////////////////////////
+Query: 71
+Nearest neighbor-1: 7116
+distanceCube: 667.741
+distanceTrue: 667.741
+
+R-nearest neigbors: 
+item_id: 7116
+
+////////////////////////////////////////////////////////////
+Query: 72
+Nearest neighbor-1: 4660
+distanceCube: 491.534
+distanceTrue: 491.534
+
+R-nearest neigbors: 
+item_id: 4368
+item_id: 4660
+
+////////////////////////////////////////////////////////////
+Query: 73
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 74
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 75
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 76
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 77
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 78
+Nearest neighbor-1: 4166
+distanceCube: 467.279
+distanceTrue: 467.279
+
+R-nearest neigbors: 
+item_id: 4166
+
+////////////////////////////////////////////////////////////
+Query: 79
+Nearest neighbor-1: 8919
+distanceCube: 377.82
+distanceTrue: 377.82
+
+R-nearest neigbors: 
+item_id: 8919
+
+////////////////////////////////////////////////////////////
+Query: 80
+Nearest neighbor-1: 7914
+distanceCube: 589.115
+distanceTrue: 589.115
+
+R-nearest neigbors: 
+item_id: 7914
+
+////////////////////////////////////////////////////////////
+Query: 81
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 82
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 83
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 84
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 85
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 86
+Nearest neighbor-1: 3173
+distanceCube: 652.806
+distanceTrue: 652.806
+
+R-nearest neigbors: 
+item_id: 3173
+
+////////////////////////////////////////////////////////////
+Query: 87
+Nearest neighbor-1: 2603
+distanceCube: 486.424
+distanceTrue: 486.424
+
+R-nearest neigbors: 
+item_id: 2603
+
+////////////////////////////////////////////////////////////
+Query: 88
+Nearest neighbor-1: 8413
+distanceCube: 488.24
+distanceTrue: 488.24
+
+R-nearest neigbors: 
+item_id: 8413
+
+////////////////////////////////////////////////////////////
+Query: 89
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 90
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 91
+Nearest neighbor-1: 2434
+distanceCube: 681.711
+distanceTrue: 681.711
+
+R-nearest neigbors: 
+item_id: 2434
+
+////////////////////////////////////////////////////////////
+Query: 92
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 93
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 94
+Nearest neighbor-1: 6128
+distanceCube: 538.773
+distanceTrue: 538.773
+
+R-nearest neigbors: 
+item_id: 6128
+
+////////////////////////////////////////////////////////////
+Query: 95
+Nearest neighbor-1: 7615
+distanceCube: 490.282
+distanceTrue: 490.282
+
+R-nearest neigbors: 
+item_id: 7615
+item_id: 7703
+
+////////////////////////////////////////////////////////////
+Query: 96
+Nearest neighbor-1: 9851
+distanceCube: 481.971
+distanceTrue: 481.971
+
+R-nearest neigbors: 
+item_id: 9851
+
+////////////////////////////////////////////////////////////
+Query: 97
+Nearest neighbor-1: 2013
+distanceCube: 507.299
+distanceTrue: 507.299
+
+R-nearest neigbors: 
+item_id: 2013
+item_id: 8659
+
+////////////////////////////////////////////////////////////
+Query: 98
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 99
+Nearest neighbor-1: 8746
+distanceCube: 585.6
+distanceTrue: 585.6
+
+R-nearest neigbors: 
+item_id: 8746
+
+////////////////////////////////////////////////////////////
+Query: 100
+Nearest neighbor-1: 1604
+distanceCube: 549.571
+distanceTrue: 549.571
+
+R-nearest neigbors: 
+item_id: 1604
+
+////////////////////////////////////////////////////////////
+Query: 1
+Nearest neighbor-1: 372
+distanceCube: 417.095
+distanceTrue: 417.095
+
+R-nearest neigbors: 
+item_id: 372
+
+////////////////////////////////////////////////////////////
+Query: 2
+R-nearest neigbors: 
+Query: 1
+Nearest neighbor-1: 2274
+distanceCube: 367.846
+distanceTrue: 620.061
+
+R-nearest neigbors: 
+item_id: 204
+Query: 1
+Nearest neighbor-1: 2944
+distanceCube: 379.783
+distanceTrue: 379.783
+
+R-nearest neigbors: 
+item_id: 2944
+
+////////////////////////////////////////////////////////////
+Query: 2
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 3
+Nearest neighbor-1: 6203
+distanceCube: 480.538
+distanceTrue: 3.40282e+38
+
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 4
+Nearest neighbor-1: 2716
+distanceCube: 432.025
+distanceTrue: 3.40282e+38
+
+R-nearest neigbors: 
+Query: 1
+Nearest neighbor-1: 4487
+distanceCube: 438.511
+distanceTrue: 445.582
+
+R-nearest neigbors: 
+item_id: 423
+Query: 1
+Nearest neighbor-1: 9647
+distanceCube: 431.386
+distanceTrue: 648.732
+
+R-nearest neigbors: 
+item_id: 9325
+
+////////////////////////////////////////////////////////////
+Query: 2
+Nearest neighbor-1: 938
+distanceCube: 602.317
+distanceTrue: 3.40282e+38
+
+R-nearest neigbors: 
+Query: 1
+Nearest neighbor-1: 2882
+distanceCube: 407.084
+distanceTrue: 3.40282e+38
+
+R-nearest neigbors: 
+Query: 1
+Nearest neighbor-1: 9693
+distanceCube: 408.885
+distanceTrue: 3.40282e+38
+
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 2
+Nearest neighbor-1: 480
+distanceCube: 378.586
+distanceTrue: 378.586
+
+R-nearest neigbors: 
+item_id: 480
+item_id: 2692
+Query: 1
+R-nearest neigbors: 
+Query: 1
+Nearest neighbor-1: 6134
+distanceCube: 596.491
+distanceTrue: 3.40282e+38
+
+R-nearest neigbors: 
+Query: 1
+R-nearest neigbors: 
+Query: 1
+Nearest neighbor-1: 7894
+distanceCube: 511.812
+distanceTrue: 511.812
+
+R-nearest neigbors: 
+item_id: 7772
+item_id: 7894
+Query: 1
+Nearest neighbor-1: 3795
+distanceCube: 369.023
+distanceTrue: 369.023
+
+R-nearest neigbors: 
+item_id: 3795
+Query: 1
+Nearest neighbor-1: 4455
+distanceCube: 448.006
+distanceTrue: 3.40282e+38
+
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 2
+Nearest neighbor-1: 470
+distanceCube: 406.096
+distanceTrue: 3.40282e+38
+
+R-nearest neigbors: 
+Query: 1
+Nearest neighbor-1: 9565
+distanceCube: 446.575
+distanceTrue: 446.575
+
+R-nearest neigbors: 
+item_id: 9565
+
+////////////////////////////////////////////////////////////
+Query: 2
+Nearest neighbor-1: 8615
+distanceCube: 463.916
+distanceTrue: 591.508
+
+R-nearest neigbors: 
+item_id: 8920
+
+////////////////////////////////////////////////////////////
+Query: 3
+Nearest neighbor-1: 8626
+distanceCube: 650.744
+distanceTrue: 3.40282e+38
+
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 4
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 5
+Nearest neighbor-1: 3636
+distanceCube: 629.834
+distanceTrue: 672.1
+
+R-nearest neigbors: 
+item_id: 8193
+
+////////////////////////////////////////////////////////////
+Query: 6
+R-nearest neigbors: 
+
+////////////////////////////////////////////////////////////
+Query: 7
+Nearest neighbor-1: 1631
+distanceCube: 581.984
+distanceTrue: 642.487
+
+R-nearest neigbors: 
+item_id: 7860

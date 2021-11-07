@@ -257,7 +257,7 @@ double calculateDistance(point *point1, point *point2)
     vector<int> *p1coords = point1->getVector();
     vector<int> *p2coords = point2->getVector();
     double Sum = 0.0;
-    for (int i = 0; i < p1coords->size(); i++)
+    for (int i = 1; i < p1coords->size(); i++)
     {
         Sum = Sum + pow(((*p1coords)[i] - (*p2coords)[i]), 2.0);
     }

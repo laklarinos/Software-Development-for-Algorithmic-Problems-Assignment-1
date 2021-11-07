@@ -180,8 +180,8 @@ void hashTable::findNeighborsR(point *queryPoint, kNearest *nearestList, int R)
     {
         int IDpNode = (*it)->getIDp();
 
-        if (IDp == IDpNode)
-        {
+        //if (IDp == IDpNode)
+        //{
             point *curPoint = (*it)->getPVector();
             double dist = calculateDistance(queryPoint, curPoint);
             if (dist < R)
@@ -190,6 +190,6 @@ void hashTable::findNeighborsR(point *queryPoint, kNearest *nearestList, int R)
                 nearestList->size++;
                 nearestList->nearestPoints.push_back(curPoint);
             }
-        }
+        //}
     }
 }
