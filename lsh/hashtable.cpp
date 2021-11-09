@@ -100,6 +100,13 @@ int hashTable::hashFunction(point *pGiven)
 
 hashTable::~hashTable()
 {
+    for (int i = 0; i < this->size; i++)
+    {
+        for (std::list<linkedListNode *>::iterator it = (this->array[i]).begin(); it != (this->array[i]).end(); it++)
+        {
+            delete (*it);
+        }
+    }
 }
 
 void hashTable::print()
@@ -133,8 +140,12 @@ void hashTable::findKNeighbors(point *queryPoint, kNearest *nearestList)
     int IDp = hashFunction(queryPoint);
     int key = euclideanRemainder(IDp, this->size);
     list<linkedListNode *>::iterator it;
+    using clock = std::chrono::system_clock;
+    auto begin = clock::now();
+    int counter = 0;
     for (it = this->array[key].begin(); it != this->array[key].end(); ++it)
     {
+
         int IDpNode = (*it)->getIDp();
 
         if (IDp == IDpNode)
@@ -143,30 +154,70 @@ void hashTable::findKNeighbors(point *queryPoint, kNearest *nearestList)
             double dist = calculateDistance(queryPoint, curPoint);
             if (dist < nearestList->dist[nearestList->size - 1])
             {
+                counter++;
+                using sec = std::chrono::duration<double, std::micro>;
+                sec end = clock::now() - begin;
                 nearestList->dist[nearestList->size - 1] = dist;
                 nearestList->nearestPoints[nearestList->size - 1] = curPoint;
+                nearestList->vecOfTimes[nearestList->size - 1] = end;
                 sortNearest(nearestList);
             }
+        }
+    }
+
+    if (counter < nearestList->dist.size())
+    {
+        // we havent found K NN's
+        // do the procedure again but w/o ID checking...
+        auto begin = clock::now();
+
+        for (it = this->array[key].begin(); it != this->array[key].end(); ++it)
+        {
+            int IDpNode = (*it)->getIDp();
+
+            //if (IDp == IDpNode)
+            //{
+            point *curPoint = (*it)->getPVector();
+            double dist = calculateDistance(queryPoint, curPoint);
+            if (dist < nearestList->dist[nearestList->size - 1])
+            {
+                counter++;
+                using sec = std::chrono::duration<double, std::micro>;
+                sec end = clock::now() - begin;
+                nearestList->dist[nearestList->size - 1] = dist;
+                nearestList->nearestPoints[nearestList->size - 1] = curPoint;
+                nearestList->vecOfTimes[nearestList->size - 1] = end;
+                sortNearest(nearestList);
+            }
+            //}
         }
     }
 }
 
 void hashTable::findKNeighborsTrue(point *queryPoint, kNearest *nearestList)
 {
-    int IDp = hashFunction(queryPoint);
-    int key = euclideanRemainder(IDp, this->size);
+    // int IDp = hashFunction(queryPoint);
+    // int key = euclideanRemainder(IDp, this->size);
     list<linkedListNode *>::iterator it;
-    for (it = this->array[key].begin(); it != this->array[key].end(); ++it)
+    using clock = std::chrono::system_clock;
+    auto begin = clock::now();
+    for (int i = 0; i < this->size; i++)
     {
-        int IDpNode = (*it)->getIDp();
-
-        point *curPoint = (*it)->getPVector();
-        double dist = calculateDistance(queryPoint, curPoint);
-        if (dist < nearestList->dist[nearestList->size - 1])
+        for (it = this->array[i].begin(); it != this->array[i].end(); ++it)
         {
-            nearestList->dist[nearestList->size - 1] = dist;
-            nearestList->nearestPoints[nearestList->size - 1] = curPoint;
-            sortNearest(nearestList);
+            int IDpNode = (*it)->getIDp();
+
+            point *curPoint = (*it)->getPVector();
+            double dist = calculateDistance(queryPoint, curPoint);
+            if (dist < nearestList->dist[nearestList->size - 1])
+            {
+                using sec = std::chrono::duration<double, std::micro>;
+                sec end = clock::now() - begin;
+                nearestList->dist[nearestList->size - 1] = dist;
+                nearestList->nearestPoints[nearestList->size - 1] = curPoint;
+                nearestList->vecOfTimes[nearestList->size - 1] = end;
+                sortNearest(nearestList);
+            }
         }
     }
 }
@@ -182,14 +233,14 @@ void hashTable::findNeighborsR(point *queryPoint, kNearest *nearestList, int R)
 
         //if (IDp == IDpNode)
         //{
-            point *curPoint = (*it)->getPVector();
-            double dist = calculateDistance(queryPoint, curPoint);
-            if (dist < R)
-            {
-                nearestList->dist.push_back(dist);
-                nearestList->size++;
-                nearestList->nearestPoints.push_back(curPoint);
-            }
+        point *curPoint = (*it)->getPVector();
+        double dist = calculateDistance(queryPoint, curPoint);
+        if (dist < R)
+        {
+            nearestList->dist.push_back(dist);
+            nearestList->size++;
+            nearestList->nearestPoints.push_back(curPoint);
+        }
         //}
     }
 }

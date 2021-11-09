@@ -48,6 +48,7 @@
         "functional": "cpp",
         "numeric": "cpp",
         "random": "cpp",
-        "linkedlist.h": "cpp"
+        "linkedlist.h": "cpp",
+        "chrono": "cpp"
     }
 }

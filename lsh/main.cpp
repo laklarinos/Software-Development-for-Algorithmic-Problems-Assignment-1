@@ -81,36 +81,6 @@ int main(int argc, char *argv[])
         }
     }
 
-    // for(int i = 0; i < L; i++){
-    //     cout << "HASH TABLE: " << i << endl;
-    //     cout << "----------" << endl;
-    //     hashTablesArray[i]->print();
-    //     cout<< endl;
-    // }
-
-    // we have initialized our hash tables...
-    // now we need to read the query file,
-    // and for a q point we ought to create the following output:
-    // -------------------------------------------------------
-    // Query: query_id
-    // Nearest neighbor-1: item_id
-    // distanceLSH: <double> [ή distanceHypercube αντίστοιχα]
-    // distanceTrue: <double>
-    // ...
-    // Nearest neighbor-N: item_id
-    // distanceLSH: <double> [ή distanceHypercube αντίστοιχα]
-    // distanceTrue: <double>
-    // tLSH: <double>
-    // tTrue: <double>
-    // R-near neighbors:
-    // item_id_A
-    // item_id_B
-    // . . .
-    // item_id_Z
-
-    // first things first
-    // read query_file line by line...
-
     inputFile = "query_small_id";
 
     vector<point> arrayOfQueryPoints;
@@ -141,6 +111,7 @@ int main(int argc, char *argv[])
 
     for (int i = 0; i < numOfLinesQ; i++)
     {
+        int flag = 0;
         initKNearest(numberOfNN, &(list[i]));
         initKNearest(numberOfNN, &(listTrue[i]));
         initKNearest(0, &(listR[i]));
@@ -159,15 +130,21 @@ int main(int argc, char *argv[])
                 // we have a neighbor
                 outputFileStream << "Nearest neighbor-" << z + 1 << ": " << list[i].nearestPoints[z]->pVector[0] << endl;
                 outputFileStream << "distanceLSH: " << list[i].dist[z] << endl;
-                if (list[i].dist[z] != MAXFLOAT)
+                if (listTrue[i].dist[z] != MAXFLOAT)
                 {
                     // we have a neighbor
-                    outputFileStream << "distanceTrue: " << listTrue[i].dist[z] << endl
-                                     << endl;
+                    flag = 1;
+                    outputFileStream << "distanceTrue: " << listTrue[i].dist[z] << endl;
                 }
+                outputFileStream << "   tLSH: " << list[i].vecOfTimes[z].count() << " ms" << endl;
+                //if (flag)
+                outputFileStream << "   tTrue: " << listTrue[i].vecOfTimes[z].count() << " ms" << endl
+                                 << endl;
             }
         }
+
         outputFileStream << "R-nearest neigbors: " << endl;
+
         for (int w = 0; w < listR[i].size; w++)
         {
             outputFileStream << "item_id: " << listR[i].nearestPoints[w]->pVector[0] << endl;
@@ -179,7 +156,10 @@ int main(int argc, char *argv[])
     // now let's find their nearest neighbors...
 
     outputFileStream.close();
-    return 1;
 
-    return EXIT_SUCCESS;
+    for (int i = 0; i < L; i++)
+    {
+        delete hashTablesArray[i];
+    }
+    return 0;
 }

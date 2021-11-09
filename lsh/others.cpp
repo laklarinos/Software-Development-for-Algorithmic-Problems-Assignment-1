@@ -269,6 +269,8 @@ void initKNearest(int k, kNearest *list)
     list->nearestPoints.resize(k);
     list->dist.resize(k);
     list->size = k;
+    list->vecOfTimes.resize(k);
+
     for (int i = 0; i < k; i++)
     {
         list->dist[i] = MAXFLOAT;
@@ -279,6 +281,7 @@ void sortNearest(kNearest *list)
 {
     point *tempPoint;
     double tempDist;
+    std::chrono::duration<double> tempTime;
     for (int i = list->size - 1; i > 0; i--)
     {
         if (list->dist[i] < list->dist[i - 1])
@@ -291,6 +294,10 @@ void sortNearest(kNearest *list)
             tempPoint = list->nearestPoints[i];
             list->nearestPoints[i] = list->nearestPoints[i - 1];
             list->nearestPoints[i - 1] = tempPoint;
+
+            tempTime = list->vecOfTimes[i];
+            list->vecOfTimes[i] = list->vecOfTimes[i - 1];
+            list->vecOfTimes[i - 1] = tempTime;
         }
     }
 }

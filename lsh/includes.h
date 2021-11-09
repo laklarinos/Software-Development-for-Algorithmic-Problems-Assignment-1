@@ -14,5 +14,6 @@
 #include <cassert>
 #include <algorithm>
 #include <iterator>
+#include <chrono>
 #include <limits.h>
 #endif

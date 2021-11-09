@@ -110,31 +110,42 @@ int main(int argc, char *argv[])
         initKNearest(numberOfNN, &(listTrue[i]));
         initKNearest(0, &(listR[i]));
 
+        std::chrono::steady_clock::time_point beginHyper = std::chrono::steady_clock::now();
         hashT->findKNeighbors(&(arrayOfQueryPoints[i]), &list[i], probes, M);
+        std::chrono::steady_clock::time_point endHyper = std::chrono::steady_clock::now();
+
+        std::chrono::steady_clock::time_point beginTrue = std::chrono::steady_clock::now();
         hashT->findKNeighborsTrue(&(arrayOfQueryPoints[i]), &listTrue[i], probes, M);
+        std::chrono::steady_clock::time_point endTrue = std::chrono::steady_clock::now();
+
         hashT->findNeighborsR(&(arrayOfQueryPoints[i]), &listR[i], rad, probes, M);
 
         outputFileStream << "Query: " << arrayOfQueryPoints[i].pVector[0] << endl;
         int tempId = -1;
         for (int z = 0; z < list[i].size; z++)
         {
+            int flag = 0;
             if (list[i].dist[z] != MAXFLOAT)
             {
                 // we have a neighbor
                 outputFileStream << "Nearest neighbor-" << z + 1 << ": " << list[i].nearestPoints[z]->pVector[0] << endl;
-                outputFileStream << "distanceCube: " << list[i].dist[z] << endl;
+                outputFileStream << "   distanceCube: " << list[i].dist[z] << endl;
                 if (list[i].dist[z] != MAXFLOAT)
                 {
+                    flag = 1;
                     // we have a neighbor
-                    outputFileStream << "distanceTrue: " << listTrue[i].dist[z] << endl
-                                     << endl;
+                    outputFileStream << "   distanceTrue: " << listTrue[i].dist[z] << endl;
                 }
+                outputFileStream << "   tHYPER: " << list[i].vecOfTimes[z].count() << " ms" << endl;
+                if (flag)
+                    outputFileStream << "   tTrue: " << listTrue[i].vecOfTimes[z].count() << " ms" << endl << endl;
             }
         }
+
         outputFileStream << "R-nearest neigbors: " << endl;
         for (int w = 0; w < listR[i].size; w++)
         {
-            outputFileStream << "item_id: " << listR[i].nearestPoints[w]->pVector[0] << endl;
+            outputFileStream << "   item_id: " << listR[i].nearestPoints[w]->pVector[0] << endl;
         }
         outputFileStream << "\n////////////////////////////////////////////////////////////\n";
     }

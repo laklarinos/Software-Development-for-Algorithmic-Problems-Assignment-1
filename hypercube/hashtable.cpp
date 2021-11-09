@@ -6,6 +6,7 @@ hashTable::hashTable(int size, lshConstants *lshCon, int numOfDimensions)
     this->lshCon = lshCon;
     this->rVector.resize(lshCon->k);
     this->zeroAndOneVect.resize(size);
+
     for (int i = 0; i < this->size; i++)
     {
         list<linkedListNode *> l;
@@ -16,6 +17,12 @@ hashTable::hashTable(int size, lshConstants *lshCon, int numOfDimensions)
         auto itPos = this->rVector.begin() + j;
         this->rVector.insert(itPos, (std::rand() % 100));
     }
+
+    for (int i = 0; i < this->size; i++)
+    {
+        decToBin(&this->zeroAndOneVect[i], this->lshCon->k, i);
+    }
+
     // produce...
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -165,7 +172,6 @@ void hashTable::print()
                     cout << endl;
                 }
             }
-            //cout << "\n";
         }
     }
 }
@@ -179,97 +185,165 @@ void hashTable::findKNeighbors(point *queryPoint, kNearest *nearestList, int pro
 {
     int key = hashFunction(queryPoint);
     //int key = euclideanRemainder(IDp, this->size);
-    list<linkedListNode *>::iterator it;
-    int probesCounted = 0;
-    int mCounted = 0; //points counted
     vector<int> tempVector = this->zeroAndOneVect[key];
     vector<int> temp = tempVector;
-    int c = 0;
-    int counter = 0;
+    vector<vector<int>> hamDistVecs;
+    list<linkedListNode *>::iterator it;
+
+    int probesCounted = 0;
+    int mCounted = 0; //points counted
+    int sizeOfZeroAndOneVect = this->zeroAndOneVect[key].size();
+    int counter = hamDistVecs.size();
+    int indexVector = 0;
+    int reachedM = 0;
+
+    using clock = std::chrono::system_clock;
+    auto begin = clock::now();
+
     while (probesCounted <= probes && mCounted < M)
     {
-        if (mCounted < M && probesCounted > 0)
-        {
-            
-            // we now need to check other korifes...
-            for (int i = 0; i < c; i++)
-            {
-                int randInt = 0 + (std::rand() % ((this->lshCon->k - 1) - 0 + 1));
-                temp[randInt] == 1 ? temp[randInt] = 0 : temp[randInt] = 1;
-            }
-            // new key
-            key = binToDec(temp);
-        }
-
         for (it = this->array[key].begin(); it != this->array[key].end(); ++it)
         {
+            if (mCounted > M)
+            {
+                reachedM = 1;
+            }
             mCounted++;
-            int IDpNode = (*it)->getIDp();
             point *curPoint = (*it)->getPVector();
             double dist = calculateDistance(queryPoint, curPoint);
             if (dist < nearestList->dist[nearestList->size - 1])
             {
+                using sec = std::chrono::duration<double, std::micro>;
+                sec end = clock::now() - begin;
+
+                nearestList->vecOfTimes[nearestList->size - 1] = end;
                 nearestList->dist[nearestList->size - 1] = dist;
                 nearestList->nearestPoints[nearestList->size - 1] = curPoint;
                 sortNearest(nearestList);
             }
         }
+        if (reachedM == 1)
+            break;
 
-        if (probesCounted == 0)
+        if (mCounted < M)
         {
-            probesCounted++;
-            c++;
+            // we now need to change probe...
+            if (counter == 0)
+            {
+                //the first time in this new probe...
+                if (probesCounted > 0)
+                {
+                    hamDistVecs.clear();
+                }
+
+                probesCounted++;
+                findVectorsOfHamDist(this->zeroAndOneVect[key], probesCounted, &hamDistVecs, sizeOfZeroAndOneVect - 1);
+                counter = hamDistVecs.size();
+                key = binToDec(hamDistVecs[counter - 1]);
+                counter--;
+            }
+            else if (counter > 0)
+            {
+                // give him another vector...
+                key = binToDec(hamDistVecs[counter - 1]);
+                counter--;
+            }
         }
     }
 }
 
 void hashTable::findKNeighborsTrue(point *queryPoint, kNearest *nearestList, int probes, int M)
 {
-    int key = hashFunction(queryPoint);
+
+    int probesCounted = 0;
+    int mCounted = 0; //points counted
+    int reachedM = 0;
+
     //int key = euclideanRemainder(IDp, this->size);
     list<linkedListNode *>::iterator it;
-    int neighborsCounter = 0;
-    int pointsVisitedCounter = 0;
-    int probesCounter = 0;
-    // while (probesCounter < probes)
-    // {
+    using clock = std::chrono::system_clock;
+    auto begin = clock::now();
 
-    for (it = this->array[key].begin(); it != this->array[key].end(); ++it)
+    for (int i = 0; i < this->size; i++)
     {
-        int IDpNode = (*it)->getIDp();
-
-        point *curPoint = (*it)->getPVector();
-        double dist = calculateDistance(queryPoint, curPoint);
-        if (dist < nearestList->dist[nearestList->size - 1])
+        for (it = this->array[i].begin(); it != this->array[i].end(); ++it)
         {
-            nearestList->dist[nearestList->size - 1] = dist;
-            nearestList->nearestPoints[nearestList->size - 1] = curPoint;
-            sortNearest(nearestList);
+            point *curPoint = (*it)->getPVector();
+            double dist = calculateDistance(queryPoint, curPoint);
+            if (dist < nearestList->dist[nearestList->size - 1])
+            {
+                using sec = std::chrono::duration<double, std::micro>;
+                sec end = clock::now() - begin;
+                nearestList->dist[nearestList->size - 1] = dist;
+                nearestList->nearestPoints[nearestList->size - 1] = curPoint;
+                nearestList->vecOfTimes[nearestList->size - 1] = end;
+                sortNearest(nearestList);
+            }
         }
     }
-    // }
 }
 
 void hashTable::findNeighborsR(point *queryPoint, kNearest *nearestList, int R, int probes, int M)
 {
     int key = hashFunction(queryPoint);
     //int key = euclideanRemainder(IDp, this->size);
+    vector<int> tempVector = this->zeroAndOneVect[key];
+    vector<int> temp = tempVector;
+    vector<vector<int>> hamDistVecs;
     list<linkedListNode *>::iterator it;
-    for (it = this->array[key].begin(); it != this->array[key].end(); ++it)
-    {
-        int IDpNode = (*it)->getIDp();
 
-        //if (IDp == IDpNode)
-        //{
-        point *curPoint = (*it)->getPVector();
-        double dist = calculateDistance(queryPoint, curPoint);
-        if (dist < R)
+    int probesCounted = 0;
+    int mCounted = 0; //points counted
+    int sizeOfZeroAndOneVect = this->zeroAndOneVect[key].size();
+    int counter = hamDistVecs.size();
+    int indexVector = 0;
+    int reachedM = 0;
+
+    while (probesCounted <= probes && mCounted < M)
+    {
+        for (it = this->array[key].begin(); it != this->array[key].end(); ++it)
         {
-            nearestList->dist.push_back(dist);
-            nearestList->size++;
-            nearestList->nearestPoints.push_back(curPoint);
+            if (mCounted > M)
+            {
+                reachedM = 1;
+            }
+            mCounted++;
+            point *curPoint = (*it)->getPVector();
+            double dist = calculateDistance(queryPoint, curPoint);
+            if (dist < R)
+            {
+                nearestList->dist.push_back(dist);
+                nearestList->size++;
+                nearestList->nearestPoints.push_back(curPoint);
+            }
         }
-        //}
+        if (reachedM == 1)
+            break;
+
+        if (mCounted < M)
+        {
+            // we now need to change probe...
+            if (counter == 0)
+            {
+                //the first time in this new probe...
+                if (probesCounted > 0)
+                {
+                    hamDistVecs.clear();
+                }
+
+                probesCounted++;
+                findVectorsOfHamDist(this->zeroAndOneVect[key], probesCounted, &hamDistVecs, sizeOfZeroAndOneVect - 1);
+                counter = hamDistVecs.size();
+                key = binToDec(hamDistVecs[counter - 1]);
+                counter--;
+            }
+            else if (counter > 0)
+            {
+                // give him another vector...
+                key = binToDec(hamDistVecs[counter - 1]);
+                counter--;
+            }
+        }
     }
 }
 

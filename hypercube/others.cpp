@@ -285,6 +285,8 @@ void initKNearest(int k, kNearest *list)
     list->nearestPoints.resize(k);
     list->dist.resize(k);
     list->size = k;
+    list->vecOfTimes.resize(k);
+    
     for (int i = 0; i < k; i++)
     {
         list->dist[i] = MAXFLOAT;
@@ -295,6 +297,7 @@ void sortNearest(kNearest *list)
 {
     point *tempPoint;
     double tempDist;
+    std::chrono::duration<double> tempTime;
     for (int i = list->size - 1; i > 0; i--)
     {
         if (list->dist[i] < list->dist[i - 1])
@@ -307,8 +310,33 @@ void sortNearest(kNearest *list)
             tempPoint = list->nearestPoints[i];
             list->nearestPoints[i] = list->nearestPoints[i - 1];
             list->nearestPoints[i - 1] = tempPoint;
+
+            tempTime = list->vecOfTimes[i];
+            list->vecOfTimes[i] = list->vecOfTimes[i-1];
+            list->vecOfTimes[i-1] = tempTime;
         }
     }
+}
+
+void decToBin(vector<int> *vecGiven, int numBits, int dec)
+{
+    for (int i = 0; i < numBits; i++)
+    {
+        vecGiven->push_back(0);
+    }
+
+    int i = 0;
+    int r;
+    while (dec != 0)
+    {
+        r = dec % 2;
+
+        vecGiven->at(i) = r;
+        dec /= 2;
+        i++;
+    }
+
+    reverse(vecGiven->begin(), vecGiven->end());
 }
 
 bool zeroOrOne(int numGiven)
@@ -328,57 +356,20 @@ int binToDec(vector<int> &binVector)
     return total;
 }
 
-void findVectorsOfHamDist(vector<int> vecGiven, int hamDist, vector<vector<int>> *vecToFill)
+void findVectorsOfHamDist(vector<int> vecGiven, int hamDist, vector<vector<int>> *vecToFill, int index)
 {
-    vector<vector<int>> vecOfAlreadyCheckedIndexes;
-    int inserted = 1;
-    while (inserted)
+    if (hamDist == 0)
     {
-        
+        vecToFill->push_back(vecGiven);
+        return;
+    }
 
+    if (index < 0)
+        return;
 
-    //     vector<int> indexes(hamDist);
-    //     int count = 0;
-    //     int flagDontPush = 0;
-    //     for (int i = 0; i < hamDist; i++)
-    //     {
-    //         indexes.push_back(0 + (std::rand() % ((vecGiven.size() - 1) - 0 + 1)));
-    //     }
-    //     if (vecOfAlreadyCheckedIndexes.empty())
-    //     {
-    //         vecOfAlreadyCheckedIndexes.push_back(indexes);
-    //     }
-    //     else
-    //     {
-    //         for (int i = 0; i < vecOfAlreadyCheckedIndexes.size(); i++)
-    //         {
-    //             for (int j = 0; j < indexes.size(); j++)
-    //             {
-    //                 if (indexes[j] == vecOfAlreadyCheckedIndexes[i][j])
-    //                 {
-    //                     count++;
-    //                 }
-    //                 if (count == hamDist)
-    //                 {
-    //                     flagDontPush = 1;
-    //                     break;
-    //                 }
-    //             }
-    //             if (flagDontPush == 1)
-    //             {
-    //                 // found it...
-    //                 break;
-    //             }
-    //         }
-    //         if (flagDontPush == 1)
-    //         {
-    //             continue;
-    //         }
-    //         else
-    //         {
-    //             // push... 
-    //             vecOfAlreadyCheckedIndexes.push_back(indexes);
-    //         }
-    //     }
-    // }
+    vecGiven[index] = vecGiven[index] == 0 ? 1 : 0;
+    findVectorsOfHamDist(vecGiven, hamDist - 1, vecToFill, index - 1);
+
+    vecGiven[index] = vecGiven[index] == 0 ? 1 : 0;
+    findVectorsOfHamDist(vecGiven, hamDist, vecToFill, index - 1);
 }

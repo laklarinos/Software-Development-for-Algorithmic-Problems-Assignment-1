@@ -23,6 +23,7 @@ typedef struct kNearest
     vector<point *> nearestPoints;
     vector<double> dist;
     int size;
+    vector<chrono::duration<double, std::micro>> vecOfTimes;
 } kNearest;
 typedef struct vAndT
 {

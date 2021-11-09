@@ -15,5 +15,8 @@
 #include <algorithm>
 #include <iterator>
 #include <limits.h>
+#include <chrono>
 #include <map>
+#include <time.h>
+#include <bitset>
 #endif
