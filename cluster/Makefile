@@ -1,16 +1,16 @@
-CC = g++ -g -std=c++11 
+CC = g++ -g -O2 -std=c++11 
 
-cluster: main.o parsinginit.o hashtable.o linkedlist.o others.o cluster.o
+cluster: main.o parsinginit.o hashtable.o hashtablehyper.o linkedlist.o others.o cluster.o
 
-	$(CC) -o cluster main.o parsinginit.o hashtable.o linkedlist.o others.o cluster.o -lm
+	$(CC) -o cluster main.o parsinginit.o hashtable.o hashtablehyper.o linkedlist.o others.o cluster.o
 
-cluster.o: cluster.cpp hashtable.cpp 
+cluster.o: cluster.cpp hashtable.cpp hashtablehyper.cpp
 
-	$(CC) -c cluster.cpp hashtable.cpp
+	$(CC) -c cluster.cpp hashtable.cpp hashtablehyper.cpp
 
-main.o: main.cpp others.cpp parsinginit.cpp hashtable.cpp
+main.o: main.cpp others.cpp parsinginit.cpp hashtable.cpp hashtablehyper.cpp
 
-	$(CC) -c main.cpp others.cpp parsinginit.cpp hashtable.cpp
+	$(CC) -c main.cpp others.cpp parsinginit.cpp hashtable.cpp hashtablehyper.cpp
 
 others.o: others.cpp
 
@@ -20,9 +20,13 @@ parsinginit.o: parsinginit.cpp others.cpp
 
 	$(CC) -c parsinginit.cpp others.cpp
 
-hashtable.o: hashtable.cpp others.cpp linkedlist.cpp
+hashtable.o: hashtable.cpp others.cpp linkedlist.cpp 
 
 	$(CC) -c hashtable.cpp others.cpp linkedlist.cpp
+
+hashtablehyper.o: hashtablehyper.cpp others.cpp linkedlist.cpp 
+
+	$(CC) -c hashtablecube.cpp others.cpp linkedlist.cpp
 
 linkedlist.o: linkedlist.cpp others.cpp
 
@@ -30,11 +34,23 @@ linkedlist.o: linkedlist.cpp others.cpp
 
 run:
 
-	./cluster –i input_small_id_emiris –c cluster.conf -o output.txt -Complete no -m Classic
+	./cluster –i input_b_id –c cluster.conf -o output.txt -Complete yes -m HYPER
+
+runlsh:
+
+	./cluster –i input_b_id –c cluster.conf -o output.txt -Complete yes -m LSH
+
+runhyper:
+
+	./cluster –i input_b_id –c cluster.conf -o output.txt -Complete yes -m HYPER
+
+runclassic:
+
+	./cluster –i input_b_id –c cluster.conf -o output.txt -Complete yes -m Classic
 
 valgrind:
 
-	valgrind --leak-check=yes ./cluster –i input_small_id_emiris –c cluster.conf -o output.txt -Complete no -m Classic
+	valgrind --leak-check=yes ./cluster –i input_small_id_emiris –c cluster.conf -o output.txt -Complete yes -m HYPER
 
 clean: 
 

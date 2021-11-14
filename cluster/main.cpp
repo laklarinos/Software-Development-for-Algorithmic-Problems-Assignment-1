@@ -83,45 +83,173 @@ int main(int argc, char *argv[])
     fstream queryFilePtr;
     fstream outputFilePtr;
 
-    vector<point> arrayOfPoints;
+    vector<point> vecOfPoints;
 
-    int res = parsInit(inputFile, arrayOfPoints, &numOfLines, &numOfElements);
+    int res = parsInit(inputFile, vecOfPoints, &numOfLines, &numOfElements);
     numOfDimensions = numOfElements - 1;
     if (res == 1)
     {
         exit(1);
     }
 
-    if (arrayOfPoints.empty())
+    if (vecOfPoints.empty())
     {
         exit(1);
-    }
-
-    vector<hashTable *> hashTablesArray(L);
-    for (int i = 0; i < L; i++)
-    {
-        hashTablesArray[i] = new hashTable(numOfLines / 4, &lshCon, numOfDimensions);
     }
 
     // first centroid randomly generated...
     vector<centroid> vecOfCentroids;
 
     // K-MEANS ++, INITIALIZATION
-    initCentroids(vecOfCentroids, numOfClusters, arrayOfPoints);
+    initCentroids(vecOfCentroids, numOfClusters, vecOfPoints);
     // LLOYD, LSH REVERSE, HYPERCUBE REVERSE, ASSIGNMENT
 
     if (strcmp(method, "Classic") == 0)
     {
         // LLOYD
-        
+
+        vector<centroid> temp = vecOfCentroids;
+        int maxIt = 100;
+        int countIt = 1;
+        int flag = 0;
+
+        using clock = std::chrono::system_clock;
+        auto begin = clock::now();
+
+        while (countIt < maxIt && flag < numOfClusters)
+        {
+            flag = 0;
+            //cout << currMeanDistance << endl;
+            lloyd(vecOfCentroids, vecOfPoints);
+            updateCentroids(vecOfCentroids, numOfClusters);
+            float dist;
+            for (int j = 0; j < numOfClusters; j++)
+            {
+                dist = calculateDistance(temp[j].coordinates, vecOfCentroids[j].coordinates);
+                if (dist < 85)
+                    flag++;
+                else
+                    flag = 0;
+            }
+            temp = vecOfCentroids;
+            countIt++;
+        }
+
+        using sec = std::chrono::duration<double>;
+        sec end = clock::now() - begin;
+
+        ofstream outputFileStream;
+        outputFileStream.open(outputFile);
+        outputFileStream << "Algorithm: Range Search Classic\n";
+        printToFile(outputFileStream, vecOfCentroids, end, complete);
     }
     else if (strcmp(method, "LSH") == 0)
     {
         // LSH REVERSE
+        lshCon.k = kLSH;
+        lshCon.w = w;
+        lshCon.L = L;
+        vector<hashTable *> vecOfHashTables(L);
+        for (int i = 0; i < L; i++)
+        {
+            vecOfHashTables[i] = new hashTable(numOfLines / 8, &lshCon, numOfDimensions);
+        }
+
+        // insert to HashTables...s
+        for (int i = 0; i < numOfLines; i++)
+        {
+            for (int j = 0; j < L; j++)
+            {
+                vecOfHashTables[j]->insert(&vecOfPoints[i]);
+            }
+        }
+
+        vector<centroid> temp = vecOfCentroids;
+        int maxIt = 100;
+        int countIt = 1;
+        int flag = 0;
+
+        using clock = std::chrono::system_clock;
+        auto begin = clock::now();
+
+        while (countIt < maxIt && flag < numOfClusters)
+        {
+            flag = 0;
+            //cout << currMeanDistance << endl;
+            lshReverse(vecOfCentroids, vecOfPoints, vecOfHashTables);
+            insertRestOfPoints(vecOfPoints, vecOfCentroids);
+            updateCentroids(vecOfCentroids, numOfClusters);
+            float dist;
+            for (int j = 0; j < numOfClusters; j++)
+            {
+                dist = calculateDistance(temp[j].coordinates, vecOfCentroids[j].coordinates);
+                if (dist < 85)
+                    flag++;
+                else
+                    flag = 0;
+            }
+            temp = vecOfCentroids;
+            countIt++;
+        }
+        // now let's check which items did not get assigned to any cluster...
+
+        using sec = std::chrono::duration<double>;
+        sec end = clock::now() - begin;
+
+        ofstream outputFileStream;
+        outputFileStream.open(outputFile);
+        outputFileStream << "Algorithm: Range Search LSH\n";
+        printToFile(outputFileStream, vecOfCentroids, end, complete);
     }
-    else if (strcmp(method, "Hyper") == 0)
+    else if (strcmp(method, "HYPER") == 0)
     {
         // HYPERCUBE REVERSE
+        lshCon.k = kCUBE;
+        lshCon.w = w;
+        lshCon.L = M;
+        hashTableCube *hashT = new hashTableCube(myPow(2, kCUBE), &lshCon, numOfDimensions);
+        for (int i = 0; i < numOfLines; i++)
+            hashT->insert(&vecOfPoints[i]);
+        vector<centroid> temp = vecOfCentroids;
+        int maxIt = 100;
+        int countIt = 1;
+        int flag = 0;
+
+        using clock = std::chrono::system_clock;
+        auto begin = clock::now();
+
+        while (countIt < maxIt && flag < numOfClusters)
+        {
+            flag = 0;
+            //cout << currMeanDistance << endl;
+            //lshReverse(vecOfCentroids, vecOfPoints, vecOfHashTables);
+            hyperCubeReverse(vecOfCentroids, vecOfPoints, hashT, probes, M);
+            insertRestOfPoints(vecOfPoints, vecOfCentroids);
+            updateCentroids(vecOfCentroids, numOfClusters);
+            float dist = 0;
+
+            for (int j = 0; j < numOfClusters; j++)
+            {
+                dist += calculateDistance(temp[j].coordinates, vecOfCentroids[j].coordinates);
+                if (dist < 85)
+                    flag++;
+                else
+                    flag = 0;
+            }
+            temp = vecOfCentroids;
+            countIt++;
+            cout << countIt << endl;
+        }
+
+        // now let's check which items did not get assigned to any cluster...
+
+        using sec = std::chrono::duration<double>;
+        sec end = clock::now() - begin;
+
+        ofstream outputFileStream;
+        outputFileStream.open(outputFile);
+        outputFileStream << "Algorithm: Range Search HYPER CUBE\n";
+        printToFile(outputFileStream, vecOfCentroids, end, complete);
     }
 
     return 0;

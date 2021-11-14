@@ -152,7 +152,7 @@ void hashTable::findKNeighbors(point *queryPoint, kNearest *nearestList)
         {
             point *curPoint = (*it)->getPVector();
             double dist = calculateDistance(queryPoint, curPoint);
-            if (dist < nearestList->dist[nearestList->size - 1])
+            if (dist < nearestList->dist[nearestList->size - 1] && dist > 0)
             {
                 counter++;
                 using sec = std::chrono::duration<double, std::micro>;
@@ -167,7 +167,7 @@ void hashTable::findKNeighbors(point *queryPoint, kNearest *nearestList)
 
     if (counter < nearestList->dist.size())
     {
-        // we havent found K NN's
+        // if we havent found K NN's
         // do the procedure again but w/o ID checking...
         auto begin = clock::now();
 
@@ -179,7 +179,7 @@ void hashTable::findKNeighbors(point *queryPoint, kNearest *nearestList)
             //{
             point *curPoint = (*it)->getPVector();
             double dist = calculateDistance(queryPoint, curPoint);
-            if (dist < nearestList->dist[nearestList->size - 1])
+            if (dist < nearestList->dist[nearestList->size - 1] && dist > 0)
             {
                 counter++;
                 using sec = std::chrono::duration<double, std::micro>;
@@ -209,7 +209,7 @@ void hashTable::findKNeighborsTrue(point *queryPoint, kNearest *nearestList)
 
             point *curPoint = (*it)->getPVector();
             double dist = calculateDistance(queryPoint, curPoint);
-            if (dist < nearestList->dist[nearestList->size - 1])
+            if (dist < nearestList->dist[nearestList->size - 1] && dist > 0)
             {
                 using sec = std::chrono::duration<double, std::micro>;
                 sec end = clock::now() - begin;
@@ -235,7 +235,7 @@ void hashTable::findNeighborsR(point *queryPoint, kNearest *nearestList, int R)
         //{
         point *curPoint = (*it)->getPVector();
         double dist = calculateDistance(queryPoint, curPoint);
-        if (dist < R)
+        if (dist < R && dist > 0)
         {
             nearestList->dist.push_back(dist);
             nearestList->size++;

@@ -143,7 +143,16 @@ int euclideanRemainder(int a, int b)
 {
     assert(b != 0);
     int r = a % b;
+    
     return r >= 0 ? r : r + std::abs(b);
+}
+
+int euclideanRemainder(int a, unsigned int b)
+{
+    assert(b != 0);
+    int r = a % b;
+    
+    return r >= 0 ? r : r + b;
 }
 
 int myPow(int x, int p)
@@ -208,4 +217,60 @@ void sortNearest(kNearest *list)
             list->vecOfTimes[i - 1] = tempTime;
         }
     }
+}
+
+void decToBin(vector<int> *vecGiven, int numBits, int dec)
+{
+    for (int i = 0; i < numBits; i++)
+    {
+        vecGiven->push_back(0);
+    }
+
+    int i = 0;
+    int r;
+    while (dec != 0)
+    {
+        r = dec % 2;
+
+        vecGiven->at(i) = r;
+        dec /= 2;
+        i++;
+    }
+
+    reverse(vecGiven->begin(), vecGiven->end());
+}
+
+bool zeroOrOne(int numGiven)
+{
+    return euclideanRemainder(numGiven, 2);
+}
+
+int binToDec(vector<int> &binVector)
+{
+    int total = 0;
+    int size = binVector.size();
+    for (int i = size - 1; i >= 0; i--)
+    {
+        if (binVector[i] == 1)
+            total += binVector[i] * myPow(2, i);
+    }
+    return total;
+}
+
+void findVectorsOfHamDist(vector<int> vecGiven, int hamDist, vector<vector<int>> *vecToFill, int index)
+{
+    if (hamDist == 0)
+    {
+        vecToFill->push_back(vecGiven);
+        return;
+    }
+
+    if (index < 0)
+        return;
+
+    vecGiven[index] = vecGiven[index] == 0 ? 1 : 0;
+    findVectorsOfHamDist(vecGiven, hamDist - 1, vecToFill, index - 1);
+
+    vecGiven[index] = vecGiven[index] == 0 ? 1 : 0;
+    findVectorsOfHamDist(vecGiven, hamDist, vecToFill, index - 1);
 }

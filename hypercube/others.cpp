@@ -286,7 +286,7 @@ void initKNearest(int k, kNearest *list)
     list->dist.resize(k);
     list->size = k;
     list->vecOfTimes.resize(k);
-    
+
     for (int i = 0; i < k; i++)
     {
         list->dist[i] = MAXFLOAT;
@@ -312,8 +312,8 @@ void sortNearest(kNearest *list)
             list->nearestPoints[i - 1] = tempPoint;
 
             tempTime = list->vecOfTimes[i];
-            list->vecOfTimes[i] = list->vecOfTimes[i-1];
-            list->vecOfTimes[i-1] = tempTime;
+            list->vecOfTimes[i] = list->vecOfTimes[i - 1];
+            list->vecOfTimes[i - 1] = tempTime;
         }
     }
 }
@@ -341,7 +341,9 @@ void decToBin(vector<int> *vecGiven, int numBits, int dec)
 
 bool zeroOrOne(int numGiven)
 {
-    return euclideanRemainder(numGiven, 2);
+    //srand(time(NULL));
+    int res = (rand() % 2);
+    return res;
 }
 
 int binToDec(vector<int> &binVector)

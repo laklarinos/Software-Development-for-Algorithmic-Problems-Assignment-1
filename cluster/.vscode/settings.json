@@ -50,6 +50,7 @@
         "random": "cpp",
         "linkedlist.h": "cpp",
         "chrono": "cpp",
-        "ratio": "cpp"
+        "ratio": "cpp",
+        "map": "cpp"
     }
 }

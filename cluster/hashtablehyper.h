@@ -1,9 +1,9 @@
 
-#ifndef HASH
-#define HASH
+#ifndef HASH_CUBE
+#define HASH_CUBE
 #include "linkedlist.h"
 
-class hashTable
+class hashTableCube
 {
 
 private:
@@ -19,14 +19,17 @@ public:
     // inserts a point
     int insert(point *pGiven);
 
+    // given a point, it searches for it in the hash, under construction
+    int search(point *pGiven);
+
     // hash function, for now it represents the G(P) for lsh
     int hashFunction(point *pGiven);
 
     // destructor, under construction (no pun intented)
-    ~hashTable();
+    ~hashTableCube();
 
     // constructor
-    hashTable(int size, lshConstants *lshCon, int numOfDimensions);
+    hashTableCube(int size, lshConstants *lshCon, int numOfDimensions);
 
     // returns the array as a whole...
     vector<list<linkedListNode *>> getArray();
@@ -34,13 +37,11 @@ public:
     // just prints
     void print();
 
-    // given a point, it finds its neighbors by applying KNN...
+    // given a point, it finds its neighbors...
     void findKNeighbors(point *queryPoint, kNearest *nearestList, int probes, int M);
 
-    // given a point, it finds its K nearest neighbors by applying Brute Force...
     void findKNeighborsTrue(point *queryPoint, kNearest *nearestList, int probes, int M);
 
-    // given a point, it finds its k nearest neighbors by applying Range Search...
     void findNeighborsR(point *queryPoint, kNearest *nearestList, int R, int probes, int M);
 
     int getSize();

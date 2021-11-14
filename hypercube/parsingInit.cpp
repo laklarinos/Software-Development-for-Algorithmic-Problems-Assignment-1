@@ -37,5 +37,6 @@ int parsInit(char *inputFile, vector<point> &vecPoints, int *numLinesReturn, int
 
     *numLinesReturn = numOfLines;
     *numOfElements = elementsPerLine;
+    inputFilePtr.close();
     return 0;
 }

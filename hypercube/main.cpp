@@ -74,7 +74,6 @@ int main(int argc, char *argv[])
     for (int i = 0; i < numOfLines; i++)
         hashT->insert(&arrayOfPoints[i]);
 
-    inputFile = "query_small_id";
 
     vector<point> arrayOfQueryPoints;
     res = parsInit(inputFile, arrayOfQueryPoints, &numOfLinesQ, &numOfElementsQ);
@@ -98,7 +97,6 @@ int main(int argc, char *argv[])
     listTrue.resize(numOfLinesQ);
     listR.resize(numOfLinesQ);
 
-    outputFile = "output.txt";
     ofstream outputFileStream;
 
     outputFileStream.open(outputFile, std::ios_base::app);
@@ -150,5 +148,5 @@ int main(int argc, char *argv[])
         outputFileStream << "\n////////////////////////////////////////////////////////////\n";
     }
     outputFileStream.close();
-    return 1;
+    return 0;
 }

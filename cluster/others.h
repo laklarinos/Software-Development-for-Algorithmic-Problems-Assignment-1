@@ -40,7 +40,12 @@ typedef struct lshConstants
 } lshConstants;
 
 bool checkCommandLineArguments(int argcInt, char *argvArray[]);
+void findVectorsOfHamDist(vector<int> vecGiven, int hamDist, vector<vector<int>> *vecToFill, int index);
+int binToDec(vector<int> &binVector);
+bool zeroOrOne(int numGiven);
+void decToBin(vector<int> *vecGiven, int numBits, int dec);
 int euclideanRemainder(int a, int b);
+int euclideanRemainder(int a, unsigned int b);
 int myPow(int x, int p);
 double calculateDistance(point *point1, point *point2);
 void initKNearest(int k, kNearest *list);
