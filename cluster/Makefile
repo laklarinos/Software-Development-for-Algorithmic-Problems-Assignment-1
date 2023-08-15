@@ -34,19 +34,19 @@ linkedlist.o: linkedlist.cpp others.cpp
 
 run:
 
-	./cluster –i input_b_id –c cluster.conf -o output.txt -Complete yes -m HYPER
+	./cluster –i input_small_id –c cluster.conf -o output.txt -Complete yes -m HYPER
 
 runlsh:
 
-	./cluster –i input_b_id –c cluster.conf -o output.txt -Complete yes -m LSH
+	./cluster –i input_small_id –c cluster.conf -o output.txt -Complete yes -m LSH
 
 runhyper:
 
-	./cluster –i input_b_id –c cluster.conf -o output.txt -Complete yes -m HYPER
+	./cluster –i input_small_id –c cluster.conf -o output.txt -Complete yes -m HYPER
 
 runclassic:
 
-	./cluster –i input_b_id –c cluster.conf -o output.txt -Complete yes -m Classic
+	./cluster –i input_small_id –c cluster.conf -o output.txt -Complete yes -m Classic
 
 valgrind:
 
